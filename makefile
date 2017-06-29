@@ -1,16 +1,17 @@
 CC      = g++
 CFLAGS  = -g -Wall
+LDLIBS = -lcppunit
 
-all: vendingMachineTester clean
+all: vendingMachineTester
 
-vendingMachineTester: tester.o vendingMachine.o
-	$(CC) -o vendingMachineTester 
+vendingMachineTester: VendingMachine.o VendingMachineTester.o
+	$(CC) -o vendingMachineTester VendingMachine.o VendingMachineTester.o $(LDLIBS)
 
-tester.o: tester.cpp tester.h vendingMachine.h
-	$(CC) $(CFLAGS) -c tester.cpp
+tester.o: VendingMachineTester.cpp VendingMachine.h
+	$(CC) $(CFLAGS) -c VendingMachineTester.cpp
 	
-vendingMachine.o: vendingMachine.cpp vendingMachine.h
-	$(CC) $(CFLAGS) -c vendingMachine.cpp
+vendingMachine.o: VendingMachine.h VendingMachine.cpp 
+	$(CC) $(CFLAGS) -c VendingMachine.cpp
 
 clean: 
 	$(RM) vendingMachineTester *.o *~
