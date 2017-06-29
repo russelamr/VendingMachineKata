@@ -4,9 +4,9 @@
 
 class VendingMachine
 {
-    VendingMachine();
 public:
-    void InsertCoin(float coinWeightInGrams);
+    VendingMachine();
+    bool InsertCoin(float coinWeightInGrams);
 };
 
 #endif
