@@ -5,6 +5,10 @@ VendingMachine::VendingMachine(){
     //Nothing to do in the constructor yet
 }
 
-bool VendingMachine::InsertCoin(float coinWeightInGrams){
-    return true;
+Coin VendingMachine::InsertCoin(float coinWeightInGrams){
+    if(coinWeightInGrams > 5.01f){
+        return QUARTER;
+    } else {
+        return NICKEL;
+    }
 }
