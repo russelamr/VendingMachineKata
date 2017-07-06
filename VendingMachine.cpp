@@ -16,7 +16,8 @@ VendingMachine::VendingMachine(){
     Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 	currentMessage = INSERT_COIN;
-	currentAmountInsertedInCents= 0;
+	currentAmountInsertedInCents = 0;
+	currentStockOfCandy = 0;
 }
 
 void VendingMachine::InsertCoin(Coin inputCoin){
@@ -32,7 +33,6 @@ void VendingMachine::InsertCoin(Coin inputCoin){
     } else { 
         currentMessage = COIN_REJECTED;
     }
-	
 }
 
 bool VendingMachine::FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon){
@@ -73,6 +73,12 @@ void VendingMachine::SelectProduct(ProductType productType){
 			break;
 		case CANDY:
 			productCostInCents = candyCostInCents;
+			if(currentStockOfCandy > 0){
+				currentStockOfCandy--;
+			} else {
+				currentMessage = SOLD_OUT;
+				return;
+			}
 			break;
 		case CHIPS:
 			productCostInCents = chipsCostInCents;
@@ -93,5 +99,8 @@ std::string VendingMachine::CreateNewMessageInDollarsWithAmountCents(std::string
 	float amountInDollars = static_cast<float>(amountInCents) * centsToDollars;
 	ss << std::fixed << std::setprecision(2) << amountInDollars;
 	return tagToPutBeforeAmount + ss.str();
-	
+}
+
+void VendingMachine::SetStockOfCandy(int stockOfCandy){
+	currentStockOfCandy = stockOfCandy;
 }

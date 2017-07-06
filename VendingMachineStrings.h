@@ -7,5 +7,6 @@ static const std::string AMOUNT = "AMOUNT: ";
 static const std::string PRICE = "PRICE: ";
 static const std::string INVALID_SELECTION = "INVALID SELECTION";
 static const std::string INSERT_COIN = "INSERT COIN";
+static const std::string SOLD_OUT = "SOLD OUT";
     
 #endif //VENDINGMACHINESTRINGS_H

@@ -258,6 +258,30 @@ void VendingMachineTester::testMessageDoesNotResetWithTheCurrentAmountInput(){
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(AMOUNT_25_CENTS ) == 0);
 }
 
+/*void VendingMachineTester::testIfAQuarterWillBeReturnedWhenChipsPurchased(){
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.SelectProduct(CHIPS);
+	const std::Vector<Coin> change = mVendingMachine.RemoveChange();
+	CPPUNIT_ASSERT( )
+}*/
+
+void VendingMachineTester::testWhenCandyIsSoldOut(){
+	mVendingMachine.SetStockOfCandy(1);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.SelectProduct(CANDY);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.SelectProduct(CANDY);
+	CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(SOLD_OUT) == 0);
+}
+
 
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
@@ -272,6 +296,7 @@ void VendingMachineTester::setUp(){
     Penny.weightInGrams = pennyWeightInGrams;
     Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
+	mVendingMachine.SetStockOfCandy(5);
 }
 
 void VendingMachineTester::tearDown(){
