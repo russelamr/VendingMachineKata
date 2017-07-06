@@ -2,22 +2,18 @@
 #ifndef VENDINGMACHINE_H
 #define VENDINGMACHINE_H
 
-enum Coin { 
-    QUARTER, 
-    DIME, 
-    NICKEL,
-    PENNY,
-    INVALID_COIN};
+#include "Coin.h"
 
 class VendingMachine
 {
 public:
     VendingMachine();
-    Coin InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters);
+    Coin_Type InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters);
 private:
 	bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
-	bool CheckIfQuarter(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters);
-	bool CheckIfNickel(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters);
+	bool CheckForAValidCoin(float inputCoinWeightInGrams, float inputCoinDiameterInMilliMeters, float inputCoinTicknessInMilliMeters, Coin validCoin);
+	Coin Quarter;
+	Coin Nickel;
     static float const quarterWeightInGrams = 5.670f;
     static float const nickelWeightInGrams = 5.000f;
 	static float const quarterThicknessInMilliMeters = 1.75f;
@@ -30,4 +26,4 @@ private:
     
 };
 
-#endif
+#endif //VENDINGMACHINE_H

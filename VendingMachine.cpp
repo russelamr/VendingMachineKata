@@ -1,15 +1,21 @@
 //Vending Machine Implementation
 #include "VendingMachine.h"
 #include <Math.h>
+#include <iostream>
 
 VendingMachine::VendingMachine(){
-    //Nothing to do in the constructor yet
+    Quarter.weightInGrams = quarterWeightInGrams;
+	Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
+	Quarter.diameterInMilliMeters = quarterDiameterInMilliMeters;
+	Nickel.weightInGrams = nickelWeightInGrams;
+	Nickel.thicknessInMilliMeters = nickelThicknessInMilliMeters;
+	Nickel.diameterInMilliMeters = nickelDiameterInMilliMeters;
 }
 
-Coin VendingMachine::InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters){
-    if(CheckIfQuarter(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters) ){
+Coin_Type VendingMachine::InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters){
+    if(CheckForAValidCoin(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters, Quarter) ){
 		return QUARTER;
-    } else if(CheckIfNickel(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters)){
+    } else if(CheckForAValidCoin(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters, Nickel)){
         return NICKEL;
     } else { 
 		return INVALID_COIN;
@@ -20,22 +26,13 @@ bool VendingMachine::FloatValuesAreWithinEpsilon(float value1,float value2, floa
 	return fabs(value1 - value2) <= epsilon;
 }
 
-bool VendingMachine::CheckIfQuarter(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters){
-	if(!FloatValuesAreWithinEpsilon(coinWeightInGrams, quarterWeightInGrams, vendingMachineWeightToleranceInGrams)) 
+bool VendingMachine::CheckForAValidCoin(float inputCoinWeightInGrams, float inputCoinDiameterInMilliMeters, float inputCoinTicknessInMilliMeters,
+	Coin validCoin){
+	if(!FloatValuesAreWithinEpsilon(inputCoinWeightInGrams, validCoin.weightInGrams, vendingMachineWeightToleranceInGrams)) 
 		return false;
-    if(!FloatValuesAreWithinEpsilon(coinTicknessInMilliMeters,quarterThicknessInMilliMeters,vendingMachineThicknessToleranceInMilliMeters)) 
+    if(!FloatValuesAreWithinEpsilon(inputCoinTicknessInMilliMeters, validCoin.thicknessInMilliMeters, vendingMachineThicknessToleranceInMilliMeters)) 
 		return false;
-	if(!FloatValuesAreWithinEpsilon(coinDiameterInMilliMeters, quarterDiameterInMilliMeters, vendingMachineDiameterToleranceInMilliMeters)) 
-		return false;
-	return true;
-}
-
-bool VendingMachine::CheckIfNickel(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters){
-	if(!FloatValuesAreWithinEpsilon(coinWeightInGrams, nickelWeightInGrams, vendingMachineWeightToleranceInGrams)) 
-		return false;
-    if(!FloatValuesAreWithinEpsilon(coinTicknessInMilliMeters,nickelThicknessInMilliMeters,vendingMachineThicknessToleranceInMilliMeters)) 
-		return false;
-	if(!FloatValuesAreWithinEpsilon(coinDiameterInMilliMeters, nickelDiameterInMilliMeters, vendingMachineDiameterToleranceInMilliMeters)) 
+	if(!FloatValuesAreWithinEpsilon(inputCoinDiameterInMilliMeters, validCoin.diameterInMilliMeters, vendingMachineDiameterToleranceInMilliMeters)) 
 		return false;
 	return true;
 }

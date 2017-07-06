@@ -1,4 +1,7 @@
 //Vending Machine Tester Header
+#ifndef VENDINGMACHINETESTER_H
+#define VENDINGMACHINETESTER_H
+
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "VendingMachine.h"
@@ -45,3 +48,5 @@ private:
 
     VendingMachine mVendingMachine;
 };
+
+#endif //VENDINGMACHINETESTER_H
