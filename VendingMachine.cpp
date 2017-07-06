@@ -1,7 +1,5 @@
 //Vending Machine Implementation
 #include "VendingMachine.h"
-#include <Math.h>
-#include <iostream>
 
 VendingMachine::VendingMachine(){
     Quarter.weightInGrams = quarterWeightInGrams;
@@ -16,9 +14,10 @@ VendingMachine::VendingMachine(){
     Penny.weightInGrams = pennyWeightInGrams;
     Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
+	currentMessage = "";
 }
 
-Coin_Type VendingMachine::InsertCoin(Coin inputCoin){
+CoinType VendingMachine::InsertCoin(Coin inputCoin){
     if(CheckForAValidCoin(inputCoin, Quarter) ){
         return QUARTER;
     } else if(CheckForAValidCoin(inputCoin, Nickel)){
@@ -44,4 +43,12 @@ bool VendingMachine::CheckForAValidCoin(Coin inputCoin, Coin validCoin){
     if(!FloatValuesAreWithinEpsilon(inputCoin.diameterInMilliMeters, validCoin.diameterInMilliMeters, vendingMachineDiameterToleranceInMilliMeters)) 
         return false;
     return true;
+}
+
+std::string VendingMachine::GetCurrentMessage(){
+	return currentMessage;
+}
+
+void VendingMachine::SelectProduct(ProductType productType){
+    currentMessage = "THANK YOU!";
 }

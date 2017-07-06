@@ -185,6 +185,16 @@ void VendingMachineTester::testInsertCoinADimeWithTooMuchWeight()
     CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
 }
 
+void VendingMachineTester::testSelectColaWithValidFunds()
+{
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.SelectProduct(COLA);
+    CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare("THANK YOU!" ) == 0);
+}
+
 void VendingMachineTester::setUp()
 {
     Quarter.weightInGrams = quarterWeightInGrams;

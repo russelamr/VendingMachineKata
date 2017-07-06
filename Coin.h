@@ -1,7 +1,7 @@
 #ifndef COIN_H
 #define COIN_H
 
-enum Coin_Type { 
+enum CoinType { 
     QUARTER, 
     DIME, 
     NICKEL,
