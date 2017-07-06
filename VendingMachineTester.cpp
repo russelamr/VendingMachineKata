@@ -228,6 +228,11 @@ void VendingMachineTester::testSelectChipsWithInvalidFunds(){
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(PRICE_50_CENTS ) == 0);
 }
 
+void VendingMachineTester::testSelectInvalidSelection(){
+	mVendingMachine.SelectProduct(static_cast<ProductType>(-1));
+    CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(INVALID_SELECTION) == 0);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;

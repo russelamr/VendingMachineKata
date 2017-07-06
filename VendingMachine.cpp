@@ -69,6 +69,9 @@ void VendingMachine::SelectProduct(ProductType productType){
 		case CHIPS:
 			productCostInCents = chipsCostInCents;
 			break;
+		default:
+			currentMessage = INVALID_SELECTION;
+			return;
 	}
 	if(currentAmountInsertedInCents < productCostInCents){
 		currentMessage = CreateNewMessageInDollarsWithAmountCents(PRICE, productCostInCents);
