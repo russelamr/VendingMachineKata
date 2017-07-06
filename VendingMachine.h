@@ -7,15 +7,19 @@ enum Coin {
     DIME, 
     NICKEL,
     PENNY,
-    INVALID};
+    INVALID_COIN};
 
 class VendingMachine
 {
 public:
     VendingMachine();
-    Coin InsertCoin(float coinWeightInGrams);
+    Coin InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters);
 private:
-    static float const vending_machine_weight_tolerance = 0.001f;
+    static float const vendingMachineWeightToleranceInGrams = 0.001f;
+    static float const quarterWeightInGrams = 5.670f;
+    static float const nickelWeightInGrams = 5.000f;
+    static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
+    static float const quarterThicknessInMilliMeters = 1.75f;
 };
 
 #endif
