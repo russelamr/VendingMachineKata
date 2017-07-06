@@ -1,12 +1,5 @@
 #ifndef COIN_H
 #define COIN_H
-
-enum CoinType { 
-    QUARTER, 
-    DIME, 
-    NICKEL,
-    PENNY,
-    INVALID_COIN};
     
 struct Coin{
     float weightInGrams;
@@ -26,6 +19,10 @@ static float const quarterDiameterInMilliMeters = 24.26f;
 static float const nickelDiameterInMilliMeters = 21.21f;
 static float const dimeDiameterInMilliMeters = 17.91f;
 static float const pennyDiameterInMilliMeters = 19.0f;
+static float const quarterValueInDollars = 0.25f;
+static float const nickelValueInDollars = 0.05f;
+static float const dimeValueInDollars = 0.10f;
+static float const pennyValueInDollars = 0.01f;
 
 
 #endif //COIN_H

@@ -15,20 +15,23 @@ VendingMachine::VendingMachine(){
     Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 	currentMessage = "";
+	currentAmountInsertedInDollars = 0.f;
 }
 
-CoinType VendingMachine::InsertCoin(Coin inputCoin){
+void VendingMachine::InsertCoin(Coin inputCoin){
     if(CheckForAValidCoin(inputCoin, Quarter) ){
-        return QUARTER;
+        currentAmountInsertedInDollars += quarterValueInDollars;
+		currentMessage = CreateNewMessageWithNewInstertedAmount(currentAmountInsertedInDollars);
     } else if(CheckForAValidCoin(inputCoin, Nickel)){
-        return NICKEL;
+        currentAmountInsertedInDollars += nickelValueInDollars;
+		currentMessage = CreateNewMessageWithNewInstertedAmount(currentAmountInsertedInDollars);
     } else if(CheckForAValidCoin(inputCoin, Dime)){
-        return DIME;
-    } else if(CheckForAValidCoin(inputCoin, Penny)){
-        return PENNY;
-    }else { 
-        return INVALID_COIN;
+        currentAmountInsertedInDollars += dimeValueInDollars;
+		currentMessage = CreateNewMessageWithNewInstertedAmount(currentAmountInsertedInDollars);
+    } else { 
+        currentMessage = "COIN REJECTED";
     }
+	
 }
 
 bool VendingMachine::FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon){
@@ -49,6 +52,17 @@ std::string VendingMachine::GetCurrentMessage(){
 	return currentMessage;
 }
 
+void VendingMachine::ResetStateOfVendingMachine(){
+	currentAmountInsertedInDollars = 0.f;
+}
+
 void VendingMachine::SelectProduct(ProductType productType){
     currentMessage = "THANK YOU!";
+}
+
+std::string VendingMachine::CreateNewMessageWithNewInstertedAmount(float amountCurrentlyInserted){
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(2) << amountCurrentlyInserted;
+	return "AMOUNT: " + ss.str();
+	
 }

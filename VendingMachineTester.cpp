@@ -3,190 +3,189 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION( VendingMachineTester );
 
-void VendingMachineTester::testInsertQuarter()
-{
-    CPPUNIT_ASSERT( QUARTER == mVendingMachine.InsertCoin(Quarter));
+void VendingMachineTester::testInsertQuarter(){
+	mVendingMachine.InsertCoin(Quarter);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare( "AMOUNT: 0.25")  == 0 );
 }
 
-void VendingMachineTester::testInsertNickel()
-{
-    CPPUNIT_ASSERT( NICKEL == mVendingMachine.InsertCoin(Nickel));
+void VendingMachineTester::testInsertNickel(){
+	mVendingMachine.InsertCoin(Nickel);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("AMOUNT: 0.05") == 0 );
 }
 
-void VendingMachineTester::testInsertDime()
-{
-    CPPUNIT_ASSERT( DIME == mVendingMachine.InsertCoin(Dime));
+void VendingMachineTester::testInsertDime(){
+    mVendingMachine.InsertCoin(Dime);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("AMOUNT: 0.10") == 0);
 }
 
-void VendingMachineTester::testInsertPenny()
-{
-    CPPUNIT_ASSERT( PENNY == mVendingMachine.InsertCoin(Penny));
+void VendingMachineTester::testInsertPenny(){
+    mVendingMachine.InsertCoin(Penny);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinAQuarterWithNotEnoughThickness()
-{
+void VendingMachineTester::testInsertCoinAQuarterWithNotEnoughThickness(){
     Coin coin;
     coin.weightInGrams = 5.670f;
     coin.diameterInMilliMeters = 24.26f;
     coin.thicknessInMilliMeters = 1.73f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+	mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinAQuarterWithTooMuchThickness()
-{
+void VendingMachineTester::testInsertCoinAQuarterWithTooMuchThickness(){
     Coin coin;
     coin.weightInGrams = 5.670f;
     coin.diameterInMilliMeters = 24.26f;
     coin.thicknessInMilliMeters = 1.77f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinAQuarterWithNotEnoughDiameter()
-{
+void VendingMachineTester::testInsertCoinAQuarterWithNotEnoughDiameter(){
     Coin coin;
     coin.weightInGrams = 5.670f;
     coin.diameterInMilliMeters = 24.24f;
     coin.thicknessInMilliMeters = 1.75f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinAQuarterWithTooMuchDiameter()
-{
+void VendingMachineTester::testInsertCoinAQuarterWithTooMuchDiameter(){
     Coin coin;
     coin.weightInGrams = 5.670f;
     coin.diameterInMilliMeters = 24.28f;
     coin.thicknessInMilliMeters = 1.75f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinAQuarterWithNotEnoughWeight()
-{
+void VendingMachineTester::testInsertCoinAQuarterWithNotEnoughWeight(){
     Coin coin;
     coin.weightInGrams = 5.690f;
     coin.diameterInMilliMeters = 24.26f;
     coin.thicknessInMilliMeters = 1.75f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinAQuarterWithTooMuchWeight()
-{
+void VendingMachineTester::testInsertCoinAQuarterWithTooMuchWeight(){
     Coin coin;
     coin.weightInGrams = 5.650f;
     coin.diameterInMilliMeters = 24.26f;
     coin.thicknessInMilliMeters = 1.75f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinANickelWithNotEnoughThickness()
-{
+void VendingMachineTester::testInsertCoinANickelWithNotEnoughThickness(){
     Coin coin;
     coin.weightInGrams = 5.670f;
     coin.diameterInMilliMeters = 24.26f;
     coin.thicknessInMilliMeters = 1.73f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinANickelWithTooMuchThickness()
-{
+void VendingMachineTester::testInsertCoinANickelWithTooMuchThickness(){
     Coin coin;
     coin.weightInGrams = 5.670f;
     coin.diameterInMilliMeters = 24.26f;
     coin.thicknessInMilliMeters = 1.77f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinANickelWithNotEnoughDiameter()
-{
+void VendingMachineTester::testInsertCoinANickelWithNotEnoughDiameter(){
     Coin coin;
     coin.weightInGrams = 5.670f;
     coin.diameterInMilliMeters = 24.24f;
     coin.thicknessInMilliMeters = 1.75f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinANickelWithTooMuchDiameter()
-{
+void VendingMachineTester::testInsertCoinANickelWithTooMuchDiameter(){
     Coin coin;
     coin.weightInGrams = 5.670f;
     coin.diameterInMilliMeters = 24.28f;
     coin.thicknessInMilliMeters = 1.75f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinANickelWithNotEnoughWeight()
-{
+void VendingMachineTester::testInsertCoinANickelWithNotEnoughWeight(){
     Coin coin;
     coin.weightInGrams = 5.690f;
     coin.diameterInMilliMeters = 24.26f;
     coin.thicknessInMilliMeters = 1.75f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinANickelWithTooMuchWeight()
-{
+void VendingMachineTester::testInsertCoinANickelWithTooMuchWeight(){
     Coin coin;
     coin.weightInGrams = 5.650f;
     coin.diameterInMilliMeters = 24.26f;
     coin.thicknessInMilliMeters = 1.75f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinADimeWithNotEnoughThickness()
-{
+void VendingMachineTester::testInsertCoinADimeWithNotEnoughThickness(){
     Coin coin;
     coin.weightInGrams = 2.268f;
     coin.diameterInMilliMeters = 17.91f;
     coin.thicknessInMilliMeters = 1.33f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinADimeWithTooMuchThickness()
-{
+void VendingMachineTester::testInsertCoinADimeWithTooMuchThickness(){
     Coin coin;
     coin.weightInGrams = 2.268f;
     coin.diameterInMilliMeters = 17.91f;
     coin.thicknessInMilliMeters = 1.37f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinADimeWithNotEnoughDiameter()
-{
+void VendingMachineTester::testInsertCoinADimeWithNotEnoughDiameter(){
     Coin coin;
     coin.weightInGrams = 2.268f;
     coin.diameterInMilliMeters = 17.89f;
     coin.thicknessInMilliMeters = 1.35f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinADimeWithTooMuchDiameter()
-{
+void VendingMachineTester::testInsertCoinADimeWithTooMuchDiameter(){
     Coin coin;
     coin.weightInGrams = 2.268f;
     coin.diameterInMilliMeters = 17.93f;
     coin.thicknessInMilliMeters = 1.35f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinADimeWithNotEnoughWeight()
-{
+void VendingMachineTester::testInsertCoinADimeWithNotEnoughWeight(){
     Coin coin;
     coin.weightInGrams = 2.248f;
     coin.diameterInMilliMeters = 17.91f;
     coin.thicknessInMilliMeters = 1.35f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testInsertCoinADimeWithTooMuchWeight()
-{
+void VendingMachineTester::testInsertCoinADimeWithTooMuchWeight(){
     Coin coin;
     coin.weightInGrams = 2.288f;
     coin.diameterInMilliMeters = 17.91f;
     coin.thicknessInMilliMeters = 1.35f;
-    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(coin));
+    mVendingMachine.InsertCoin(coin);
+    CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare("COIN REJECTED") == 0 );
 }
 
-void VendingMachineTester::testSelectColaWithValidFunds()
-{
+void VendingMachineTester::testSelectColaWithValidFunds(){
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.InsertCoin(Quarter);
@@ -195,8 +194,7 @@ void VendingMachineTester::testSelectColaWithValidFunds()
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare("THANK YOU!" ) == 0);
 }
 
-void VendingMachineTester::setUp()
-{
+void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
     Quarter.diameterInMilliMeters = quarterDiameterInMilliMeters;
@@ -211,7 +209,6 @@ void VendingMachineTester::setUp()
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 }
 
-void VendingMachineTester::tearDown()
-{
+void VendingMachineTester::tearDown(){
     //Nothing to tear down yet
 }
