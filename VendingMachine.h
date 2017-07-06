@@ -18,6 +18,7 @@ public:
     void InsertCoin(Coin inputCoin);
 	void SelectProduct(ProductType productType);
 	void SetStockOfCandy(int stockOfCandy);
+	void SetStockOfChips(int stockOfChips);
 	std::string GetCurrentMessage();
 private:
     bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
@@ -30,6 +31,7 @@ private:
 	std::string currentMessage;
 	int currentAmountInsertedInCents;
 	int currentStockOfCandy;
+	int currentStockOfChips;
     static float const vendingMachineWeightToleranceInGrams = 0.01f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
     static float const vendingMachineDiameterToleranceInMilliMeters = 0.01f;  

@@ -18,6 +18,7 @@ VendingMachine::VendingMachine(){
 	currentMessage = INSERT_COIN;
 	currentAmountInsertedInCents = 0;
 	currentStockOfCandy = 0;
+	currentStockOfChips = 0;
 }
 
 void VendingMachine::InsertCoin(Coin inputCoin){
@@ -82,6 +83,12 @@ void VendingMachine::SelectProduct(ProductType productType){
 			break;
 		case CHIPS:
 			productCostInCents = chipsCostInCents;
+			if(currentStockOfChips > 0){
+				currentStockOfChips--;
+			} else {
+				currentMessage = SOLD_OUT;
+				return;
+			}
 			break;
 		default:
 			currentMessage = INVALID_SELECTION;
@@ -103,4 +110,8 @@ std::string VendingMachine::CreateNewMessageInDollarsWithAmountCents(std::string
 
 void VendingMachine::SetStockOfCandy(int stockOfCandy){
 	currentStockOfCandy = stockOfCandy;
+}
+
+void VendingMachine::SetStockOfChips(int stockOfChips){
+	currentStockOfChips = stockOfChips;
 }
