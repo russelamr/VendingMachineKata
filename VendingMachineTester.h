@@ -14,6 +14,12 @@ class VendingMachineTester : public CppUnit::TestFixture
     CPPUNIT_TEST(testInsertCoinAQuarterWithTooMuchDiameter);
 	CPPUNIT_TEST(testInsertCoinAQuarterWithNotEnoughWeight);
     CPPUNIT_TEST(testInsertCoinAQuarterWithTooMuchWeight);
+	CPPUNIT_TEST(testInsertCoinANickelWithNotEnoughThickness);
+    CPPUNIT_TEST(testInsertCoinANickelWithTooMuchThickness);
+	CPPUNIT_TEST(testInsertCoinANickelWithNotEnoughDiameter);
+    CPPUNIT_TEST(testInsertCoinANickelWithTooMuchDiameter);
+	CPPUNIT_TEST(testInsertCoinANickelWithNotEnoughWeight);
+    CPPUNIT_TEST(testInsertCoinANickelWithTooMuchWeight);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -29,6 +35,12 @@ protected:
     void testInsertCoinAQuarterWithTooMuchDiameter();
 	void testInsertCoinAQuarterWithNotEnoughWeight();
     void testInsertCoinAQuarterWithTooMuchWeight();
+	void testInsertCoinANickelWithNotEnoughThickness();
+    void testInsertCoinANickelWithTooMuchThickness();
+	void testInsertCoinANickelWithNotEnoughDiameter();
+    void testInsertCoinANickelWithTooMuchDiameter();
+	void testInsertCoinANickelWithNotEnoughWeight();
+    void testInsertCoinANickelWithTooMuchWeight();
 private:
 
     VendingMachine mVendingMachine;
