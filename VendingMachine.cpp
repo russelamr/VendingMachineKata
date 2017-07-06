@@ -8,7 +8,8 @@ VendingMachine::VendingMachine(){
 
 Coin VendingMachine::InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters){
     if(coinWeightInGrams > 5.01f){
-        if( FloatValuesAreWithinEpsilon(coinTicknessInMilliMeters,quarterThicknessInMilliMeters,vendingMachineThicknessToleranceInMilliMeters)){
+        if( FloatValuesAreWithinEpsilon(coinTicknessInMilliMeters,quarterThicknessInMilliMeters,vendingMachineThicknessToleranceInMilliMeters) &&
+		   FloatValuesAreWithinEpsilon(coinDiameterInMilliMeters, quarterDiameterInMilliMeters, vendingMachineDiameterToleranceInMilliMeters)){
 			return QUARTER;
         } else {
             return INVALID_COIN;

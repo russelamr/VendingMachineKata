@@ -19,8 +19,11 @@ private:
     static float const vendingMachineWeightToleranceInGrams = 0.001f;
     static float const quarterWeightInGrams = 5.670f;
     static float const nickelWeightInGrams = 5.000f;
+	static float const quarterThicknessInMilliMeters = 1.75f;
+	static float const quarterDiameterInMilliMeters = 24.26f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
-    static float const quarterThicknessInMilliMeters = 1.75f;
+	static float const vendingMachineDiameterToleranceInMilliMeters = 0.01f;
+    
 };
 
 #endif

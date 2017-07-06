@@ -8,8 +8,8 @@ class VendingMachineTester : public CppUnit::TestFixture
     CPPUNIT_TEST_SUITE(VendingMachineTester);
     CPPUNIT_TEST(testInsertQuarter);
     CPPUNIT_TEST(testInsertNickel);
-    CPPUNIT_TEST(testInsertCoinWithWeightOfAQuarterButWithNotEnoughThickness);
-    CPPUNIT_TEST(testInsertCoinWithWeightOfAQuarterButWithTooMuchThickness);
+    CPPUNIT_TEST(testInsertCoinAQuarterWithNotEnoughThickness);
+    CPPUNIT_TEST(testInsertCoinAQuarterWithTooMuchThickness);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -19,8 +19,10 @@ public:
 protected:
     void testInsertQuarter();
     void testInsertNickel();
-    void testInsertCoinWithWeightOfAQuarterButWithNotEnoughThickness();
-    void testInsertCoinWithWeightOfAQuarterButWithTooMuchThickness();
+    void testInsertCoinAQuarterWithNotEnoughThickness();
+    void testInsertCoinAQuarterWithTooMuchThickness();
+	void testInsertCoinAQuarterWithNotEnoughDiameter();
+    void testInsertCoinAQuarterWithTooMuchDiameter();
 private:
 
     VendingMachine mVendingMachine;
