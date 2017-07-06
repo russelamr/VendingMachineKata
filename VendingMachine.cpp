@@ -50,7 +50,11 @@ bool VendingMachine::CheckForAValidCoin(Coin inputCoin, Coin validCoin){
 }
 
 std::string VendingMachine::GetCurrentMessage(){
-	return currentMessage;
+	std::string messageToPrint = currentMessage;
+	if(currentMessage.compare(THANK_YOU) == 0){
+		currentMessage = INSERT_COIN;
+	}
+	return messageToPrint;
 }
 
 void VendingMachine::ResetStateOfVendingMachine(){

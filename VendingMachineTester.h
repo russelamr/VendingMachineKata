@@ -40,7 +40,7 @@ class VendingMachineTester : public CppUnit::TestFixture
 	CPPUNIT_TEST(testSelectChipsWithInvalidFunds);
 	CPPUNIT_TEST(testSelectInvalidSelection);
 	CPPUNIT_TEST(testInitialMessage);
-	//CPPUNIT_TEST(testResetMessageAfterThankYou);
+	CPPUNIT_TEST(testResetMessageAfterThankYou);
 	//CPPUNIT_TEST(testResetMessageAfterPriceMessage);
     CPPUNIT_TEST_SUITE_END();
 
@@ -79,7 +79,7 @@ protected:
 	void testSelectChipsWithInvalidFunds();
 	void testSelectInvalidSelection();
 	void testInitialMessage();
-	//void testResetMessageAfterThankYou();
+	void testResetMessageAfterThankYou();
 	//void testResetMessageAfterPriceMessage();
 private:
 
