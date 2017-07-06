@@ -58,8 +58,17 @@ void VendingMachine::ResetStateOfVendingMachine(){
 }
 
 void VendingMachine::SelectProduct(ProductType productType){
-	if(currentAmountInsertedInCents < colaCostInCents){
-		currentMessage = CreateNewMessageInDollarsWithAmountCents(PRICE, colaCostInCents);
+	int productCostInCents = 0;
+	switch (productType){
+		case COLA:
+			productCostInCents = colaCostInCents;
+			break;
+		case CANDY:
+			productCostInCents = candyCostInCents;
+			break;
+	}
+	if(currentAmountInsertedInCents < productCostInCents){
+		currentMessage = CreateNewMessageInDollarsWithAmountCents(PRICE, productCostInCents);
 	} else {
 		currentMessage = THANK_YOU;
 	}

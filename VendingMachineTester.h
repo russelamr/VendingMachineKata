@@ -34,6 +34,8 @@ class VendingMachineTester : public CppUnit::TestFixture
     CPPUNIT_TEST(testInsertCoinADimeWithTooMuchWeight);
     CPPUNIT_TEST(testSelectColaWithValidFunds);
 	CPPUNIT_TEST(testSelectColaWithInvalidFunds);
+	CPPUNIT_TEST(testSelectCandyWithValidFunds);
+	CPPUNIT_TEST(testSelectCandyWithInvalidFunds);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -65,6 +67,8 @@ protected:
     void testInsertCoinADimeWithTooMuchWeight();
     void testSelectColaWithValidFunds();
 	void testSelectColaWithInvalidFunds();
+	void testSelectCandyWithValidFunds();
+	void testSelectCandyWithInvalidFunds();
 private:
 
     VendingMachine mVendingMachine;

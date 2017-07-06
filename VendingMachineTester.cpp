@@ -200,6 +200,21 @@ void VendingMachineTester::testSelectColaWithInvalidFunds(){
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(PRICE_100_CENTS ) == 0);
 }
 
+void VendingMachineTester::testSelectCandyWithValidFunds(){
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.SelectProduct(CANDY);
+    CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(THANK_YOU ) == 0);
+}
+
+void VendingMachineTester::testSelectCandyWithInvalidFunds(){
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.SelectProduct(CANDY);
+    CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(PRICE_65_CENTS ) == 0);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
