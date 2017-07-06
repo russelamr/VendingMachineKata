@@ -13,6 +13,11 @@ void VendingMachineTester::testInsertNickel()
     CPPUNIT_ASSERT( NICKEL == mVendingMachine.InsertCoin(5.0f, 21.21f, 1.95f));
 }
 
+void VendingMachineTester::testInsertDime()
+{
+    CPPUNIT_ASSERT( DIME == mVendingMachine.InsertCoin(2.268f, 17.91f, 1.35f));
+}
+
 void VendingMachineTester::testInsertCoinAQuarterWithNotEnoughThickness()
 {
     CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(5.670f, 24.26f, 1.73f));
@@ -72,6 +77,37 @@ void VendingMachineTester::testInsertCoinANickelWithTooMuchWeight()
 {
     CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(5.650f, 24.26f, 1.75f));
 }
+
+void VendingMachineTester::testInsertCoinADimeWithNotEnoughThickness()
+{
+    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(2.268f, 17.91f, 1.33f));
+}
+
+void VendingMachineTester::testInsertCoinADimeWithTooMuchThickness()
+{
+    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(2.268f, 17.91f, 1.37f));
+}
+
+void VendingMachineTester::testInsertCoinADimeWithNotEnoughDiameter()
+{
+    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(2.268f, 17.89f, 1.35f));
+}
+
+void VendingMachineTester::testInsertCoinADimeWithTooMuchDiameter()
+{
+    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(2.268f, 17.93f, 1.35f));
+}
+
+void VendingMachineTester::testInsertCoinADimeWithNotEnoughWeight()
+{
+    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(2.248f, 17.91f, 1.35f));
+}
+
+void VendingMachineTester::testInsertCoinADimeWithTooMuchWeight()
+{
+    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(2.288f, 17.91f, 1.35f));
+}
+
 void VendingMachineTester::setUp()
 {
     //Nothing to setup yet

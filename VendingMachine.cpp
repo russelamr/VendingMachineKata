@@ -10,6 +10,9 @@ VendingMachine::VendingMachine(){
 	Nickel.weightInGrams = nickelWeightInGrams;
 	Nickel.thicknessInMilliMeters = nickelThicknessInMilliMeters;
 	Nickel.diameterInMilliMeters = nickelDiameterInMilliMeters;
+	Dime.weightInGrams = dimeWeightInGrams;
+	Dime.thicknessInMilliMeters = dimeThicknessInMilliMeters;
+	Dime.diameterInMilliMeters = dimeDiameterInMilliMeters;
 }
 
 Coin_Type VendingMachine::InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters){
@@ -17,6 +20,8 @@ Coin_Type VendingMachine::InsertCoin(float coinWeightInGrams, float coinDiameter
 		return QUARTER;
     } else if(CheckForAValidCoin(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters, Nickel)){
         return NICKEL;
+    } else if(CheckForAValidCoin(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters, Dime)){
+        return DIME;
     } else { 
 		return INVALID_COIN;
 	}
