@@ -293,6 +293,21 @@ void VendingMachineTester::testWhenChipsAreSoldOut(){
 	CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(SOLD_OUT) == 0);
 }
 
+void VendingMachineTester::testWhenColaIsSoldOut(){
+	mVendingMachine.SetStockOfCola(1);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.SelectProduct(COLA);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.SelectProduct(COLA);
+	CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(SOLD_OUT) == 0);
+}
+
 
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
@@ -309,6 +324,7 @@ void VendingMachineTester::setUp(){
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 	mVendingMachine.SetStockOfCandy(5);
 	mVendingMachine.SetStockOfChips(5);
+	mVendingMachine.SetStockOfCola(5);
 }
 
 void VendingMachineTester::tearDown(){

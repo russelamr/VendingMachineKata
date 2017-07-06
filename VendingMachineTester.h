@@ -46,6 +46,7 @@ class VendingMachineTester : public CppUnit::TestFixture
 	//CPPUNIT_TEST(testIfAQuarterWillBeReturnedWhenCandyPurchased);
 	CPPUNIT_TEST(testWhenCandyIsSoldOut);
 	CPPUNIT_TEST(testWhenChipsAreSoldOut);
+	CPPUNIT_TEST(testWhenColaIsSoldOut);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -89,6 +90,7 @@ protected:
 	//void testIfAQuarterWillBeReturnedWhenChipsPurchased();
 	void testWhenCandyIsSoldOut();
 	void testWhenChipsAreSoldOut();
+	void testWhenColaIsSoldOut();
 private:
 
     VendingMachine mVendingMachine;

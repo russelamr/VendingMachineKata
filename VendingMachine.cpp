@@ -19,6 +19,7 @@ VendingMachine::VendingMachine(){
 	currentAmountInsertedInCents = 0;
 	currentStockOfCandy = 0;
 	currentStockOfChips = 0;
+	currentStockOfCola = 0;
 }
 
 void VendingMachine::InsertCoin(Coin inputCoin){
@@ -70,34 +71,17 @@ void VendingMachine::SelectProduct(ProductType productType){
 	int productCostInCents = 0;
 	switch (productType){
 		case COLA:
-			productCostInCents = colaCostInCents;
+			currentMessage = AttemptToPurchaseItem(currentAmountInsertedInCents, colaCostInCents, currentStockOfCola);
 			break;
 		case CANDY:
-			productCostInCents = candyCostInCents;
-			if(currentStockOfCandy > 0){
-				currentStockOfCandy--;
-			} else {
-				currentMessage = SOLD_OUT;
-				return;
-			}
+			currentMessage = AttemptToPurchaseItem(currentAmountInsertedInCents, candyCostInCents, currentStockOfCandy);
 			break;
 		case CHIPS:
-			productCostInCents = chipsCostInCents;
-			if(currentStockOfChips > 0){
-				currentStockOfChips--;
-			} else {
-				currentMessage = SOLD_OUT;
-				return;
-			}
+			currentMessage = AttemptToPurchaseItem(currentAmountInsertedInCents, chipsCostInCents, currentStockOfChips);
 			break;
 		default:
 			currentMessage = INVALID_SELECTION;
 			return;
-	}
-	if(currentAmountInsertedInCents < productCostInCents){
-		currentMessage = CreateNewMessageInDollarsWithAmountCents(PRICE, productCostInCents);
-	} else {
-		currentMessage = THANK_YOU;
 	}
 }
 
@@ -114,4 +98,21 @@ void VendingMachine::SetStockOfCandy(int stockOfCandy){
 
 void VendingMachine::SetStockOfChips(int stockOfChips){
 	currentStockOfChips = stockOfChips;
+}
+
+void VendingMachine::SetStockOfCola(int stockOfCola){
+	currentStockOfCola = stockOfCola;
+}
+
+std::string VendingMachine::AttemptToPurchaseItem(int amountInsertedInCents, int productCostInCents, int &currentStock){
+	if(currentStock > 0){
+		if(amountInsertedInCents < productCostInCents){
+			return CreateNewMessageInDollarsWithAmountCents(PRICE, productCostInCents);
+		} else {
+			currentStock--;
+			return THANK_YOU;
+		}
+	} else {
+		return SOLD_OUT;
+	}
 }

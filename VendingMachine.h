@@ -19,11 +19,13 @@ public:
 	void SelectProduct(ProductType productType);
 	void SetStockOfCandy(int stockOfCandy);
 	void SetStockOfChips(int stockOfChips);
+	void SetStockOfCola(int stockOfCola);
 	std::string GetCurrentMessage();
 private:
     bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
     bool CheckForAValidCoin(Coin inputCoin, Coin validCoin);
 	std::string CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents);
+	std::string AttemptToPurchaseItem(int amountInsertedInCents, int productCostInCents, int &currentStock);
     Coin Quarter;
     Coin Nickel;
     Coin Dime;
@@ -32,6 +34,7 @@ private:
 	int currentAmountInsertedInCents;
 	int currentStockOfCandy;
 	int currentStockOfChips;
+	int currentStockOfCola;
     static float const vendingMachineWeightToleranceInGrams = 0.01f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
     static float const vendingMachineDiameterToleranceInMilliMeters = 0.01f;  
