@@ -233,6 +233,10 @@ void VendingMachineTester::testSelectInvalidSelection(){
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(INVALID_SELECTION) == 0);
 }
 
+void VendingMachineTester::testInitialMessage(){
+    CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(INSERT_COIN) == 0);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;

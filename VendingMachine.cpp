@@ -15,8 +15,8 @@ VendingMachine::VendingMachine(){
     Penny.weightInGrams = pennyWeightInGrams;
     Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
-	currentMessage = "";
-	currentAmountInsertedInCents= 0.f;
+	currentMessage = INSERT_COIN;
+	currentAmountInsertedInCents= 0;
 }
 
 void VendingMachine::InsertCoin(Coin inputCoin){
@@ -54,7 +54,7 @@ std::string VendingMachine::GetCurrentMessage(){
 }
 
 void VendingMachine::ResetStateOfVendingMachine(){
-	currentAmountInsertedInCents = 0.f;
+	currentAmountInsertedInCents = 0;
 }
 
 void VendingMachine::SelectProduct(ProductType productType){
