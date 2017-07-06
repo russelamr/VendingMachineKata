@@ -13,16 +13,21 @@ VendingMachine::VendingMachine(){
 	Dime.weightInGrams = dimeWeightInGrams;
 	Dime.thicknessInMilliMeters = dimeThicknessInMilliMeters;
 	Dime.diameterInMilliMeters = dimeDiameterInMilliMeters;
+	Penny.weightInGrams = pennyWeightInGrams;
+	Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
+	Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 }
 
-Coin_Type VendingMachine::InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters){
-    if(CheckForAValidCoin(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters, Quarter) ){
+Coin_Type VendingMachine::InsertCoin(Coin inputCoin){
+    if(CheckForAValidCoin(inputCoin, Quarter) ){
 		return QUARTER;
-    } else if(CheckForAValidCoin(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters, Nickel)){
+    } else if(CheckForAValidCoin(inputCoin, Nickel)){
         return NICKEL;
-    } else if(CheckForAValidCoin(coinWeightInGrams, coinDiameterInMilliMeters,coinTicknessInMilliMeters, Dime)){
+    } else if(CheckForAValidCoin(inputCoin, Dime)){
         return DIME;
-    } else { 
+    } else if(CheckForAValidCoin(inputCoin, Penny)){
+        return PENNY;
+    }else { 
 		return INVALID_COIN;
 	}
 }
@@ -31,13 +36,12 @@ bool VendingMachine::FloatValuesAreWithinEpsilon(float value1,float value2, floa
 	return fabs(value1 - value2) <= epsilon;
 }
 
-bool VendingMachine::CheckForAValidCoin(float inputCoinWeightInGrams, float inputCoinDiameterInMilliMeters, float inputCoinTicknessInMilliMeters,
-	Coin validCoin){
-	if(!FloatValuesAreWithinEpsilon(inputCoinWeightInGrams, validCoin.weightInGrams, vendingMachineWeightToleranceInGrams)) 
+bool VendingMachine::CheckForAValidCoin(Coin inputCoin,	Coin validCoin){
+	if(!FloatValuesAreWithinEpsilon(inputCoin.weightInGrams, validCoin.weightInGrams, vendingMachineWeightToleranceInGrams)) 
 		return false;
-    if(!FloatValuesAreWithinEpsilon(inputCoinTicknessInMilliMeters, validCoin.thicknessInMilliMeters, vendingMachineThicknessToleranceInMilliMeters)) 
+    if(!FloatValuesAreWithinEpsilon(inputCoin.thicknessInMilliMeters, validCoin.thicknessInMilliMeters, vendingMachineThicknessToleranceInMilliMeters)) 
 		return false;
-	if(!FloatValuesAreWithinEpsilon(inputCoinDiameterInMilliMeters, validCoin.diameterInMilliMeters, vendingMachineDiameterToleranceInMilliMeters)) 
+	if(!FloatValuesAreWithinEpsilon(inputCoin.diameterInMilliMeters, validCoin.diameterInMilliMeters, vendingMachineDiameterToleranceInMilliMeters)) 
 		return false;
 	return true;
 }
