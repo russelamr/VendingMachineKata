@@ -6,5 +6,5 @@ enum Product_Type {
     CHIPS, 
     CANDY,
     INVALID_PRODUCT};
-	
+    
 #endif //PRODUCT_H

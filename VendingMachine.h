@@ -19,6 +19,6 @@ private:
     static float const vendingMachineWeightToleranceInGrams = 0.01f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
     static float const vendingMachineDiameterToleranceInMilliMeters = 0.01f;  
-	};
+    };
 
 #endif //VENDINGMACHINE_H

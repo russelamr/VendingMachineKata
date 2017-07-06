@@ -7,11 +7,11 @@ enum Coin_Type {
     NICKEL,
     PENNY,
     INVALID_COIN};
-	
+    
 struct Coin{
-	float weightInGrams;
-	float diameterInMilliMeters;
-	float thicknessInMilliMeters;
+    float weightInGrams;
+    float diameterInMilliMeters;
+    float thicknessInMilliMeters;
 };
 
 static float const quarterWeightInGrams = 5.670f;

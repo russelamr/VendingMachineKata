@@ -188,17 +188,17 @@ void VendingMachineTester::testInsertCoinADimeWithTooMuchWeight()
 void VendingMachineTester::setUp()
 {
     Quarter.weightInGrams = quarterWeightInGrams;
-	Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
-	Quarter.diameterInMilliMeters = quarterDiameterInMilliMeters;
-	Nickel.weightInGrams = nickelWeightInGrams;
-	Nickel.thicknessInMilliMeters = nickelThicknessInMilliMeters;
-	Nickel.diameterInMilliMeters = nickelDiameterInMilliMeters;
-	Dime.weightInGrams = dimeWeightInGrams;
-	Dime.thicknessInMilliMeters = dimeThicknessInMilliMeters;
-	Dime.diameterInMilliMeters = dimeDiameterInMilliMeters;
-	Penny.weightInGrams = pennyWeightInGrams;
-	Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
-	Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
+    Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
+    Quarter.diameterInMilliMeters = quarterDiameterInMilliMeters;
+    Nickel.weightInGrams = nickelWeightInGrams;
+    Nickel.thicknessInMilliMeters = nickelThicknessInMilliMeters;
+    Nickel.diameterInMilliMeters = nickelDiameterInMilliMeters;
+    Dime.weightInGrams = dimeWeightInGrams;
+    Dime.thicknessInMilliMeters = dimeThicknessInMilliMeters;
+    Dime.diameterInMilliMeters = dimeDiameterInMilliMeters;
+    Penny.weightInGrams = pennyWeightInGrams;
+    Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
+    Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 }
 
 void VendingMachineTester::tearDown()
