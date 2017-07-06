@@ -252,6 +252,13 @@ void VendingMachineTester::testResetMessageAfterPriceMessage(){
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(INSERT_COIN ) == 0);
 }
 
+void VendingMachineTester::testMessageDoesNotResetWithTheCurrentAmountInput(){
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.GetCurrentMessage();
+    CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(AMOUNT_25_CENTS ) == 0);
+}
+
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
