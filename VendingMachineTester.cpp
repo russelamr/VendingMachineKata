@@ -33,6 +33,16 @@ void VendingMachineTester::testInsertCoinAQuarterWithTooMuchDiameter()
     CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(5.670f, 24.28f, 1.75f));
 }
 
+void VendingMachineTester::testInsertCoinAQuarterWithNotEnoughWeight()
+{
+    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(5.690f, 24.26f, 1.75f));
+}
+
+void VendingMachineTester::testInsertCoinAQuarterWithTooMuchWeight()
+{
+    CPPUNIT_ASSERT( INVALID_COIN == mVendingMachine.InsertCoin(5.650f, 24.26f, 1.75f));
+}
+
 void VendingMachineTester::setUp()
 {
     //Nothing to setup yet

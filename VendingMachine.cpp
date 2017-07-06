@@ -7,16 +7,18 @@ VendingMachine::VendingMachine(){
 }
 
 Coin VendingMachine::InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters){
-    if(coinWeightInGrams > 5.01f){
+    if(FloatValuesAreWithinEpsilon(coinWeightInGrams, quarterWeightInGrams, vendingMachineWeightToleranceInGrams)){
         if( FloatValuesAreWithinEpsilon(coinTicknessInMilliMeters,quarterThicknessInMilliMeters,vendingMachineThicknessToleranceInMilliMeters) &&
 		   FloatValuesAreWithinEpsilon(coinDiameterInMilliMeters, quarterDiameterInMilliMeters, vendingMachineDiameterToleranceInMilliMeters)){
 			return QUARTER;
         } else {
             return INVALID_COIN;
         }
-    } else {
+    } else if(FloatValuesAreWithinEpsilon(coinWeightInGrams, nickelWeightInGrams, vendingMachineWeightToleranceInGrams)){
         return NICKEL;
-    }
+    } else { 
+		return INVALID_COIN;
+	}
 }
 
 bool VendingMachine::FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon){
