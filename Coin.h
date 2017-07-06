@@ -19,10 +19,11 @@ static float const quarterDiameterInMilliMeters = 24.26f;
 static float const nickelDiameterInMilliMeters = 21.21f;
 static float const dimeDiameterInMilliMeters = 17.91f;
 static float const pennyDiameterInMilliMeters = 19.0f;
-static float const quarterValueInDollars = 0.25f;
-static float const nickelValueInDollars = 0.05f;
-static float const dimeValueInDollars = 0.10f;
-static float const pennyValueInDollars = 0.01f;
-
+static int const quarterValueInCents = 25;
+static int const nickelValueInCents = 5;
+static int const dimeValueInCents = 10;
+static int const pennyValueInCents = 1;
+static float const centsToDollars = .01f;
+static float const dollarsToCents = 100.f;
 
 #endif //COIN_H

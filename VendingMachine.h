@@ -21,13 +21,13 @@ public:
 private:
     bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
     bool CheckForAValidCoin(Coin inputCoin, Coin validCoin);
-	std::string CreateNewMessageWithNewInstertedAmount(float amountCurrentlyInserted);
+	std::string CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents);
     Coin Quarter;
     Coin Nickel;
     Coin Dime;
     Coin Penny;
 	std::string currentMessage;
-	float currentAmountInsertedInDollars;
+	int currentAmountInsertedInCents;
     static float const vendingMachineWeightToleranceInGrams = 0.01f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
     static float const vendingMachineDiameterToleranceInMilliMeters = 0.01f;  

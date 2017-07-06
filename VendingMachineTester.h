@@ -5,9 +5,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "VendingMachine.h"
-static const std::string AMOUNT_25_CENTS = "AMOUNT: 0.25";
-static const std::string AMOUNT_10_CENTS = "AMOUNT: 0.10";
-static const std::string AMOUNT_05_CENTS = "AMOUNT: 0.05";
+#include "VendingMachineTesterStrings.h"
 
 class VendingMachineTester : public CppUnit::TestFixture
 {
@@ -35,6 +33,7 @@ class VendingMachineTester : public CppUnit::TestFixture
     CPPUNIT_TEST(testInsertCoinADimeWithNotEnoughWeight);
     CPPUNIT_TEST(testInsertCoinADimeWithTooMuchWeight);
     CPPUNIT_TEST(testSelectColaWithValidFunds);
+	CPPUNIT_TEST(testSelectColaWithInvalidFunds);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -65,6 +64,7 @@ protected:
     void testInsertCoinADimeWithNotEnoughWeight();
     void testInsertCoinADimeWithTooMuchWeight();
     void testSelectColaWithValidFunds();
+	void testSelectColaWithInvalidFunds();
 private:
 
     VendingMachine mVendingMachine;

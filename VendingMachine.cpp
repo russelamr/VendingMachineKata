@@ -1,5 +1,6 @@
 //Vending Machine Implementation
 #include "VendingMachine.h"
+#include <iostream>
 
 VendingMachine::VendingMachine(){
     Quarter.weightInGrams = quarterWeightInGrams;
@@ -15,19 +16,19 @@ VendingMachine::VendingMachine(){
     Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 	currentMessage = "";
-	currentAmountInsertedInDollars = 0.f;
+	currentAmountInsertedInCents= 0.f;
 }
 
 void VendingMachine::InsertCoin(Coin inputCoin){
     if(CheckForAValidCoin(inputCoin, Quarter) ){
-        currentAmountInsertedInDollars += quarterValueInDollars;
-		currentMessage = CreateNewMessageWithNewInstertedAmount(currentAmountInsertedInDollars);
+        currentAmountInsertedInCents += quarterValueInCents;
+		currentMessage = CreateNewMessageInDollarsWithAmountCents(AMOUNT, currentAmountInsertedInCents);
     } else if(CheckForAValidCoin(inputCoin, Nickel)){
-        currentAmountInsertedInDollars += nickelValueInDollars;
-		currentMessage = CreateNewMessageWithNewInstertedAmount(currentAmountInsertedInDollars);
+        currentAmountInsertedInCents += nickelValueInCents;
+		currentMessage = CreateNewMessageInDollarsWithAmountCents(AMOUNT,currentAmountInsertedInCents);
     } else if(CheckForAValidCoin(inputCoin, Dime)){
-        currentAmountInsertedInDollars += dimeValueInDollars;
-		currentMessage = CreateNewMessageWithNewInstertedAmount(currentAmountInsertedInDollars);
+        currentAmountInsertedInCents += dimeValueInCents;
+		currentMessage = CreateNewMessageInDollarsWithAmountCents(AMOUNT,currentAmountInsertedInCents);
     } else { 
         currentMessage = COIN_REJECTED;
     }
@@ -53,16 +54,21 @@ std::string VendingMachine::GetCurrentMessage(){
 }
 
 void VendingMachine::ResetStateOfVendingMachine(){
-	currentAmountInsertedInDollars = 0.f;
+	currentAmountInsertedInCents = 0.f;
 }
 
 void VendingMachine::SelectProduct(ProductType productType){
-    currentMessage = THANK_YOU;
+	if(currentAmountInsertedInCents < colaCostInCents){
+		currentMessage = CreateNewMessageInDollarsWithAmountCents(PRICE, colaCostInCents);
+	} else {
+		currentMessage = THANK_YOU;
+	}
 }
 
-std::string VendingMachine::CreateNewMessageWithNewInstertedAmount(float amountCurrentlyInserted){
+std::string VendingMachine::CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents){
 	std::stringstream ss;
-	ss << std::fixed << std::setprecision(2) << amountCurrentlyInserted;
-	return AMOUNT + ss.str();
+	float amountInDollars = static_cast<float>(amountInCents) * centsToDollars;
+	ss << std::fixed << std::setprecision(2) << amountInDollars;
+	return tagToPutBeforeAmount + ss.str();
 	
 }

@@ -194,6 +194,12 @@ void VendingMachineTester::testSelectColaWithValidFunds(){
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(THANK_YOU ) == 0);
 }
 
+void VendingMachineTester::testSelectColaWithInvalidFunds(){
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.SelectProduct(COLA);
+    CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(PRICE_100_CENTS ) == 0);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;

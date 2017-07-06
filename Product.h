@@ -8,8 +8,8 @@ enum ProductType {
     INVALID_PRODUCT
 };
 
-static float const colaCostInDollars = 1.00f;
-static float const chipsCostInDollars = 0.50f;
-static float const candyCostInDollars = 0.65f;
+static int const colaCostInCents = 100;
+static int const chipsCostInCents = 50;
+static int const candyCostInCents = 65;
     
 #endif //PRODUCT_H
