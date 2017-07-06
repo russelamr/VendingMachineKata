@@ -15,6 +15,7 @@ public:
     VendingMachine();
     Coin InsertCoin(float coinWeightInGrams, float coinDiameterInMilliMeters, float coinTicknessInMilliMeters);
 private:
+	bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
     static float const vendingMachineWeightToleranceInGrams = 0.001f;
     static float const quarterWeightInGrams = 5.670f;
     static float const nickelWeightInGrams = 5.000f;
