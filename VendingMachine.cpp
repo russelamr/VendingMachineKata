@@ -29,7 +29,7 @@ void VendingMachine::InsertCoin(Coin inputCoin){
         currentAmountInsertedInDollars += dimeValueInDollars;
 		currentMessage = CreateNewMessageWithNewInstertedAmount(currentAmountInsertedInDollars);
     } else { 
-        currentMessage = "COIN REJECTED";
+        currentMessage = COIN_REJECTED;
     }
 	
 }
@@ -57,12 +57,12 @@ void VendingMachine::ResetStateOfVendingMachine(){
 }
 
 void VendingMachine::SelectProduct(ProductType productType){
-    currentMessage = "THANK YOU!";
+    currentMessage = THANK_YOU;
 }
 
 std::string VendingMachine::CreateNewMessageWithNewInstertedAmount(float amountCurrentlyInserted){
 	std::stringstream ss;
 	ss << std::fixed << std::setprecision(2) << amountCurrentlyInserted;
-	return "AMOUNT: " + ss.str();
+	return AMOUNT + ss.str();
 	
 }

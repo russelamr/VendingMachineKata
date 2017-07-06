@@ -8,6 +8,7 @@
 
 #include "Coin.h"
 #include "Product.h"
+#include "VendingMachineStrings.h"
 
 class VendingMachine
 {

@@ -5,6 +5,9 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "VendingMachine.h"
+static const std::string AMOUNT_25_CENTS = "AMOUNT: 0.25";
+static const std::string AMOUNT_10_CENTS = "AMOUNT: 0.10";
+static const std::string AMOUNT_05_CENTS = "AMOUNT: 0.05";
 
 class VendingMachineTester : public CppUnit::TestFixture
 {
