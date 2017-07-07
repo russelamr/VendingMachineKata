@@ -29,6 +29,7 @@ private:
 	std::string CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents);
 	std::string AttemptToPurchaseItem(int amountInsertedInCents, int productCostInCents, int &currentStock);
 	void MakeChange(int amountToBeTurnedIntoChangeInCents);
+	void AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Coin coin);
     Coin Quarter;
     Coin Nickel;
     Coin Dime;

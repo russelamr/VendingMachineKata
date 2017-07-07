@@ -327,6 +327,22 @@ void VendingMachineTester::testIfADimeWillBeReturnedWhenChipsPurchased(){
 	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Dime) && change.size() == 1);
 }
 
+void VendingMachineTester::testIfMultipleCoinsWillBeReturnedWhenChipsPurchased(){
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.SelectProduct(CHIPS);
+	std::vector<Coin> change = mVendingMachine.RemoveChange();
+	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) &&
+		CheckForAValidCoin(change[1], Quarter) &&
+		CheckForAValidCoin(change[2], Dime) &&
+		CheckForAValidCoin(change[3], Nickel) &&
+		change.size() == 4);
+}
+
 
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;

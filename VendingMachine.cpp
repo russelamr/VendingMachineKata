@@ -123,9 +123,15 @@ std::vector<Coin> VendingMachine::RemoveChange(){
 }
 
 void VendingMachine::MakeChange(int amountToBeTurnedIntoChangeInCents){
-	if(amountToBeTurnedIntoChangeInCents == quarterValueInCents){
-		changeInReturnSlot.push_back(Quarter);
-	} else {
-		changeInReturnSlot.push_back(Dime);
+	AddOneTypeOfCurrencyToReturnSlot(amountToBeTurnedIntoChangeInCents / quarterValueInCents, Quarter);
+	amountToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % quarterValueInCents;
+	AddOneTypeOfCurrencyToReturnSlot(amountToBeTurnedIntoChangeInCents / dimeValueInCents, Dime);
+	amountToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % dimeValueInCents;
+	AddOneTypeOfCurrencyToReturnSlot(amountToBeTurnedIntoChangeInCents / nickelValueInCents, Nickel);
+}
+
+void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Coin coin){
+	for(int i=0; i< numberOfCoinsToAdd; i++) {
+		changeInReturnSlot.push_back(coin);
 	}
 }
