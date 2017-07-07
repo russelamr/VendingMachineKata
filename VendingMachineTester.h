@@ -43,10 +43,10 @@ class VendingMachineTester : public CppUnit::TestFixture
 	CPPUNIT_TEST(testResetMessageAfterThankYou);
 	CPPUNIT_TEST(testResetMessageAfterPriceMessage);
 	CPPUNIT_TEST(testMessageDoesNotResetWithTheCurrentAmountInput);
-	//CPPUNIT_TEST(testIfAQuarterWillBeReturnedWhenCandyPurchased);
 	CPPUNIT_TEST(testWhenCandyIsSoldOut);
 	CPPUNIT_TEST(testWhenChipsAreSoldOut);
 	CPPUNIT_TEST(testWhenColaIsSoldOut);
+	CPPUNIT_TEST(testIfAQuarterWillBeReturnedWhenChipsPurchased);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -54,6 +54,8 @@ public:
     void tearDown();
 
 protected:
+	bool checkIfQuarter(Coin inputCoin);
+
     void testInsertQuarter();
     void testInsertNickel();
     void testInsertDime();
@@ -87,12 +89,16 @@ protected:
 	void testResetMessageAfterThankYou();
 	void testResetMessageAfterPriceMessage();
 	void testMessageDoesNotResetWithTheCurrentAmountInput();
-	//void testIfAQuarterWillBeReturnedWhenChipsPurchased();
 	void testWhenCandyIsSoldOut();
 	void testWhenChipsAreSoldOut();
 	void testWhenColaIsSoldOut();
+	void testIfAQuarterWillBeReturnedWhenChipsPurchased();
+	
+	const static float testerWeightToleranceInGrams = 0.01f;
+	const static float testerThicknessToleranceInMilliMeters = 0.01f;
+	const static float testerDiameterToleranceInMilliMeters = 0.01f;
 private:
-
+	bool CheckForAValidCoin(Coin inputCoin, Coin validCoin);
     VendingMachine mVendingMachine;
     Coin Quarter;
     Coin Nickel;

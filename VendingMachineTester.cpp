@@ -3,6 +3,16 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION( VendingMachineTester );
 
+bool VendingMachineTester::CheckForAValidCoin(Coin inputCoin, Coin validCoin){
+	if(!VendingMachine::FloatValuesAreWithinEpsilon(inputCoin.weightInGrams, validCoin.weightInGrams, testerWeightToleranceInGrams)) 
+        return false;
+    if(!VendingMachine::FloatValuesAreWithinEpsilon(inputCoin.thicknessInMilliMeters, validCoin.thicknessInMilliMeters, testerThicknessToleranceInMilliMeters)) 
+        return false;
+    if(!VendingMachine::FloatValuesAreWithinEpsilon(inputCoin.diameterInMilliMeters, validCoin.diameterInMilliMeters, testerDiameterToleranceInMilliMeters)) 
+        return false;
+    return true;
+}
+
 void VendingMachineTester::testInsertQuarter(){
 	mVendingMachine.InsertCoin(Quarter);
     CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare( AMOUNT_25_CENTS)  == 0 );
@@ -258,15 +268,6 @@ void VendingMachineTester::testMessageDoesNotResetWithTheCurrentAmountInput(){
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(AMOUNT_25_CENTS ) == 0);
 }
 
-/*void VendingMachineTester::testIfAQuarterWillBeReturnedWhenChipsPurchased(){
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.SelectProduct(CHIPS);
-	const std::Vector<Coin> change = mVendingMachine.RemoveChange();
-	CPPUNIT_ASSERT( )
-}*/
-
 void VendingMachineTester::testWhenCandyIsSoldOut(){
 	mVendingMachine.SetStockOfCandy(1);
 	mVendingMachine.InsertCoin(Quarter);
@@ -306,6 +307,15 @@ void VendingMachineTester::testWhenColaIsSoldOut(){
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.SelectProduct(COLA);
 	CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(SOLD_OUT) == 0);
+}
+
+void VendingMachineTester::testIfAQuarterWillBeReturnedWhenChipsPurchased(){
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.SelectProduct(CHIPS);
+	std::vector<Coin> change = mVendingMachine.RemoveChange();
+	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) && change.size() == 1);
 }
 
 

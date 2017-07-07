@@ -116,3 +116,9 @@ std::string VendingMachine::AttemptToPurchaseItem(int amountInsertedInCents, int
 		return SOLD_OUT;
 	}
 }
+
+std::vector<Coin> VendingMachine::RemoveChange(){
+	std::vector<Coin> change;
+	change.push_back(Quarter);
+	return change;
+}

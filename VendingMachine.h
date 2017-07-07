@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <vector>
 
 #include "Coin.h"
 #include "Product.h"
@@ -21,8 +22,9 @@ public:
 	void SetStockOfChips(int stockOfChips);
 	void SetStockOfCola(int stockOfCola);
 	std::string GetCurrentMessage();
+	std::vector<Coin> RemoveChange();
+	static bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
 private:
-    bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
     bool CheckForAValidCoin(Coin inputCoin, Coin validCoin);
 	std::string CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents);
 	std::string AttemptToPurchaseItem(int amountInsertedInCents, int productCostInCents, int &currentStock);
