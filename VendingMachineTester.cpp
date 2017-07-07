@@ -318,6 +318,15 @@ void VendingMachineTester::testIfAQuarterWillBeReturnedWhenChipsPurchased(){
 	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) && change.size() == 1);
 }
 
+void VendingMachineTester::testIfADimeWillBeReturnedWhenChipsPurchased(){
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.SelectProduct(CHIPS);
+	std::vector<Coin> change = mVendingMachine.RemoveChange();
+	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Dime) && change.size() == 1);
+}
+
 
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;

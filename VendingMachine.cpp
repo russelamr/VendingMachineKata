@@ -110,6 +110,7 @@ std::string VendingMachine::AttemptToPurchaseItem(int amountInsertedInCents, int
 			return CreateNewMessageInDollarsWithAmountCents(PRICE, productCostInCents);
 		} else {
 			currentStock--;
+			MakeChange(amountInsertedInCents - productCostInCents);
 			return THANK_YOU;
 		}
 	} else {
@@ -118,7 +119,13 @@ std::string VendingMachine::AttemptToPurchaseItem(int amountInsertedInCents, int
 }
 
 std::vector<Coin> VendingMachine::RemoveChange(){
-	std::vector<Coin> change;
-	change.push_back(Quarter);
-	return change;
+	return changeInReturnSlot;
+}
+
+void VendingMachine::MakeChange(int amountToBeTurnedIntoChangeInCents){
+	if(amountToBeTurnedIntoChangeInCents == quarterValueInCents){
+		changeInReturnSlot.push_back(Quarter);
+	} else {
+		changeInReturnSlot.push_back(Dime);
+	}
 }

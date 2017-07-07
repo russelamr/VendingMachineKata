@@ -93,6 +93,7 @@ protected:
 	void testWhenChipsAreSoldOut();
 	void testWhenColaIsSoldOut();
 	void testIfAQuarterWillBeReturnedWhenChipsPurchased();
+	void testIfADimeWillBeReturnedWhenChipsPurchased();
 	
 	const static float testerWeightToleranceInGrams = 0.01f;
 	const static float testerThicknessToleranceInMilliMeters = 0.01f;

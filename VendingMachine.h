@@ -28,11 +28,13 @@ private:
     bool CheckForAValidCoin(Coin inputCoin, Coin validCoin);
 	std::string CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents);
 	std::string AttemptToPurchaseItem(int amountInsertedInCents, int productCostInCents, int &currentStock);
+	void MakeChange(int amountToBeTurnedIntoChangeInCents);
     Coin Quarter;
     Coin Nickel;
     Coin Dime;
     Coin Penny;
 	std::string currentMessage;
+	std::vector<Coin> changeInReturnSlot;
 	int currentAmountInsertedInCents;
 	int currentStockOfCandy;
 	int currentStockOfChips;
