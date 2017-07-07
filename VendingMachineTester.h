@@ -48,6 +48,7 @@ class VendingMachineTester : public CppUnit::TestFixture
 	CPPUNIT_TEST(testWhenColaIsSoldOut);
 	CPPUNIT_TEST(testIfAQuarterWillBeReturnedWhenChipsPurchased);
 	CPPUNIT_TEST(testIfMultipleCoinsWillBeReturnedWhenChipsPurchased);
+	CPPUNIT_TEST(testReturnChangeWhenOnlyOneQuarterIsPicked);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -96,6 +97,7 @@ protected:
 	void testIfAQuarterWillBeReturnedWhenChipsPurchased();
 	void testIfADimeWillBeReturnedWhenChipsPurchased();
 	void testIfMultipleCoinsWillBeReturnedWhenChipsPurchased();
+	void testReturnChangeWhenOnlyOneQuarterIsPicked();
 	
 	const static float testerWeightToleranceInGrams = 0.01f;
 	const static float testerThicknessToleranceInMilliMeters = 0.01f;

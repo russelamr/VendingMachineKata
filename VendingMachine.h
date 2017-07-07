@@ -22,6 +22,7 @@ public:
 	void SetStockOfChips(int stockOfChips);
 	void SetStockOfCola(int stockOfCola);
 	std::string GetCurrentMessage();
+	std::vector<Coin> ReturnCoins();
 	std::vector<Coin> RemoveChange();
 	static bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
 private:

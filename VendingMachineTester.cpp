@@ -343,6 +343,12 @@ void VendingMachineTester::testIfMultipleCoinsWillBeReturnedWhenChipsPurchased()
 		change.size() == 4);
 }
 
+void VendingMachineTester::testReturnChangeWhenOnlyOneQuarterIsPicked(){
+	mVendingMachine.InsertCoin(Quarter);
+	std::vector<Coin> change = mVendingMachine.ReturnCoins();
+	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) && change.size() == 1);
+}
+
 
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;

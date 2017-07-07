@@ -135,3 +135,9 @@ void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Co
 		changeInReturnSlot.push_back(coin);
 	}
 }
+
+std::vector<Coin> VendingMachine::ReturnCoins(){
+	std::vector<Coin> returnCoins;
+	returnCoins.push_back(Quarter);
+	return returnCoins;
+}
