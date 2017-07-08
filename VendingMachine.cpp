@@ -64,10 +64,6 @@ std::string VendingMachine::GetCurrentMessage(){
 	return messageToPrint;
 }
 
-void VendingMachine::ResetStateOfVendingMachine(){
-	currentAmountInsertedInCents = 0;
-}
-
 void VendingMachine::SelectProduct(ProductType productType){
 	int productCostInCents = 0;
 	switch (productType){

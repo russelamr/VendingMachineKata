@@ -15,7 +15,6 @@ class VendingMachine
 {
 public:
     VendingMachine();
-	void ResetStateOfVendingMachine();
     void InsertCoin(Coin inputCoin);
 	void SelectProduct(ProductType productType);
 	void SetStockOfCandy(int stockOfCandy);
