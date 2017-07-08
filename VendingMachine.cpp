@@ -21,8 +21,6 @@ VendingMachine::VendingMachine(){
 	currentStockOfCandy = 0;
 	currentStockOfChips = 0;
 	currentStockOfCola = 0;
-	currentStockOfDimes = 0;
-	currentStockOfNickels = 0;
 }
 
 void VendingMachine::InsertCoin(Coin inputCoin){
@@ -77,6 +75,7 @@ std::string VendingMachine::GetCurrentMessage(){
 	if(currentlyInExactChangeMode && currentMessage.compare(INSERT_COIN) == 0 ){
 		messageToPrint = EXACT_CHANGE_ONLY;
 	}
+	
 	return messageToPrint;
 }
 
@@ -122,6 +121,7 @@ std::string VendingMachine::AttemptToPurchaseItem(int amountInsertedInCents, int
 		if(amountInsertedInCents < productCostInCents){
 			return CreateNewMessageInDollarsWithAmountCents(PRICE, productCostInCents);
 		} else {
+			SortCoinsIntoTheirRespectiveChangeSlots(changeInCurrentTransaction);
 			currentStock--;
 			MakeChange(amountInsertedInCents - productCostInCents);
 			return THANK_YOU;
@@ -139,29 +139,27 @@ std::vector<Coin> VendingMachine::RemoveChangeFromTheChangeReturnSlot(){
 
 void VendingMachine::MakeChange(int amountToBeTurnedIntoChangeInCents){
 	int numberOfQuartersToBeReturned = amountToBeTurnedIntoChangeInCents / quarterValueInCents;
-	AddOneTypeOfCurrencyToReturnSlot(numberOfQuartersToBeReturned, Quarter);
+	AddOneTypeOfCurrencyToReturnSlot(numberOfQuartersToBeReturned, currentStockOfQuarters);
 	int amountLeftToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % quarterValueInCents;
 	int numberOfDimesToBeReturned = amountLeftToBeTurnedIntoChangeInCents / dimeValueInCents;
-	AddOneTypeOfCurrencyToReturnSlot(numberOfDimesToBeReturned, Dime);
+	AddOneTypeOfCurrencyToReturnSlot(numberOfDimesToBeReturned, currentStockOfDimes);
 	amountLeftToBeTurnedIntoChangeInCents = amountLeftToBeTurnedIntoChangeInCents % dimeValueInCents;
 	int numberOfNickelsToBeReturned = amountLeftToBeTurnedIntoChangeInCents / nickelValueInCents;
-	AddOneTypeOfCurrencyToReturnSlot(numberOfNickelsToBeReturned, Nickel);
+	AddOneTypeOfCurrencyToReturnSlot(numberOfNickelsToBeReturned, currentStockOfNickels);
 	
-	currentStockOfNickels -= numberOfNickelsToBeReturned;
-	currentStockOfDimes -= numberOfDimesToBeReturned;
-	
-	if(currentStockOfNickels == 0){
+	if(currentStockOfNickels.size() == 0){
 		currentlyInExactChangeMode = true;
 	}
 	
-	if(currentStockOfDimes == 0){
+	if(currentStockOfDimes.size() == 0){
 		currentlyInExactChangeMode = true;
 	}
 }
 
-void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Coin coin){
+void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn){
 	for(int i=0; i< numberOfCoinsToAdd; i++) {
-		changeInReturnSlot.push_back(coin);
+		changeInReturnSlot.push_back(vectorOfTypeOfCoinsToReturn.back());
+		vectorOfTypeOfCoinsToReturn.pop_back();
 	}
 }
 
@@ -171,19 +169,46 @@ void VendingMachine::ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot(){
 }
 
 void VendingMachine::SetStockOfDimes(int numberOfDimes){
-	currentStockOfDimes = numberOfDimes;
-	if(currentStockOfDimes == 0){
-		currentlyInExactChangeMode = true;
+	currentStockOfDimes.clear();
+	for(int i = 0; i < numberOfDimes; i++){
+		currentStockOfDimes.push_back(Dime);
+	}
+	if(currentStockOfDimes.size() == 0){
+		currentlyInExactChangeMode = true; 
 	} else {
 		currentlyInExactChangeMode = false;
 	}
 }
 
 void VendingMachine::SetStockOfNickels(int numberOfNickels){
-	currentStockOfNickels = numberOfNickels;
-	if(currentStockOfNickels == 0){
+	currentStockOfNickels.clear();
+	for(int i = 0; i < numberOfNickels; i++){
+		currentStockOfNickels.push_back(Nickel);
+	}
+	if(currentStockOfNickels.size() == 0){
 		currentlyInExactChangeMode = true;
 	} else {
 		currentlyInExactChangeMode = false;
+	}
+}
+
+void VendingMachine::SetStockOfQuarters(int numberOfQuarters){
+	for(int i = 0; i < numberOfQuarters; i++){
+		currentStockOfQuarters.push_back(Quarter);
+	}
+}
+
+void VendingMachine::SortCoinsIntoTheirRespectiveChangeSlots(std::vector<Coin> coins){
+	for (std::vector<Coin>::iterator it = coins.begin() ; it != coins.end(); ++it){
+		Coin inputCoin = *it;
+        if(CheckForAValidCoin(inputCoin, Quarter) ){
+			currentStockOfQuarters.push_back(inputCoin);
+		} else if(CheckForAValidCoin(inputCoin, Nickel)){
+			currentStockOfNickels.push_back(inputCoin);
+		} else if(CheckForAValidCoin(inputCoin, Dime)){
+			currentStockOfDimes.push_back(inputCoin);
+		} else { 
+			changeInReturnSlot.push_back(inputCoin);
+		}
 	}
 }

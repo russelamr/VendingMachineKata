@@ -426,9 +426,31 @@ void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachi
 	mVendingMachine.SetStockOfDimes(1);
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);;
+	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.SelectProduct(CANDY);
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
+}
+
+void VendingMachineTester::testIfDimesInCurrentTransactionWillBeReturnedInChange(){
+	Coin imperfectDime;
+	imperfectDime.weightInGrams = dimeWeightInGrams + .005f;
+    imperfectDime.thicknessInMilliMeters = dimeThicknessInMilliMeters;
+    imperfectDime.diameterInMilliMeters = dimeDiameterInMilliMeters;
+	mVendingMachine.SetStockOfDimes(1);
+	mVendingMachine.SetStockOfNickels(1);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(imperfectDime);
+	mVendingMachine.SelectProduct(CHIPS);
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
+	
+	std::cout << "Size: " << change.size() << std::endl;
+	std::cout << "w in g: " << change.at(1).weightInGrams << std::endl;
+	CPPUNIT_ASSERT(change.at(0).weightInGrams == dimeWeightInGrams + .005f && change.size() == 2);
 }
 
 void VendingMachineTester::setUp(){
@@ -449,6 +471,7 @@ void VendingMachineTester::setUp(){
 	mVendingMachine.SetStockOfCola(5);
 	mVendingMachine.SetStockOfDimes(10);
 	mVendingMachine.SetStockOfNickels(10);
+	mVendingMachine.SetStockOfQuarters(10);
 }
 
 void VendingMachineTester::tearDown(){

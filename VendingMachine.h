@@ -22,6 +22,7 @@ public:
 	void SetStockOfCola(int stockOfCola);
 	void SetStockOfDimes(int numberOfDimes);
 	void SetStockOfNickels(int numberOfNickels);
+	void SetStockOfQuarters(int numberOfQuarters);
 	void ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::string GetCurrentMessage();
 	std::vector<Coin> RemoveChangeFromTheChangeReturnSlot();
@@ -31,7 +32,8 @@ private:
 	std::string CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents);
 	std::string AttemptToPurchaseItem(int amountInsertedInCents, int productCostInCents, int &currentStock);
 	void MakeChange(int amountToBeTurnedIntoChangeInCents);
-	void AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Coin coin);
+	void AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn);
+	void SortCoinsIntoTheirRespectiveChangeSlots(std::vector<Coin> coins);
     Coin Quarter;
     Coin Nickel;
     Coin Dime;
@@ -43,8 +45,9 @@ private:
 	int currentStockOfCandy;
 	int currentStockOfChips;
 	int currentStockOfCola;
-	int currentStockOfDimes;
-	int currentStockOfNickels;
+	std::vector<Coin> currentStockOfQuarters;
+	std::vector<Coin> currentStockOfDimes;
+	std::vector<Coin> currentStockOfNickels;
 	bool currentlyInExactChangeMode;
     static float const vendingMachineWeightToleranceInGrams = 0.01f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
