@@ -35,10 +35,10 @@ private:
 	void AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn);
 	void SortCoinsIntoTheirRespectiveChangeSlots(std::vector<Coin> coins);
 	void CheckForTheExactChangeCondition();
-    Coin Quarter;
-    Coin Nickel;
-    Coin Dime;
-    Coin Penny;
+    Coin perfectQuarter;
+    Coin perfectNickel;
+    Coin perfectDime;
+    Coin perfectPenny;
 	std::string currentMessage;
 	std::vector<Coin> changeInReturnSlot;
 	std::vector<Coin> changeInCurrentTransaction;
