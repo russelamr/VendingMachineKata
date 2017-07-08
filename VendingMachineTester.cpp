@@ -355,6 +355,21 @@ void VendingMachineTester::testReturnChangeWhenOnlyOneNickelIsPicked(){
 	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Nickel) && change.size() == 1);
 }
 
+void VendingMachineTester::testReturnChangeWhenMultipleCoinsAreInsterted(){
+	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(Dime);
+	std::vector<Coin> change = mVendingMachine.ReturnCoins();
+	CPPUNIT_ASSERT(
+		CheckForAValidCoin(change[0], Nickel) && 
+		CheckForAValidCoin(change[1], Quarter) && 
+		CheckForAValidCoin(change[2], Nickel) && 
+		CheckForAValidCoin(change[3], Dime) && 
+		change.size() == 4);
+}
+
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
