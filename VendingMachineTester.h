@@ -131,10 +131,10 @@ protected:
 private:
 	bool CheckIfCoinsAreEqual(Coin inputCoin, Coin validCoin);
     VendingMachine mVendingMachine;
-    Coin Quarter;
-    Coin Nickel;
-    Coin Dime;
-    Coin Penny;
+    Coin mPerfectQuarter;
+    Coin mPerfectNickel;
+    Coin mPerfectDime;
+    Coin mPerfectPenny;
 };
 
 #endif //VENDINGMACHINETESTER_H

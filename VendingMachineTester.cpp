@@ -14,22 +14,22 @@ bool VendingMachineTester::CheckIfCoinsAreEqual(Coin inputCoin, Coin validCoin){
 }
 
 void VendingMachineTester::testInsertQuarter(){
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
     CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare( AMOUNT_25_CENTS)  == 0 );
 }
 
 void VendingMachineTester::testInsertNickel(){
-	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(mPerfectNickel);
     CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(AMOUNT_05_CENTS) == 0 );
 }
 
 void VendingMachineTester::testInsertDime(){
-    mVendingMachine.InsertCoin(Dime);
+    mVendingMachine.InsertCoin(mPerfectDime);
     CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(AMOUNT_10_CENTS) == 0);
 }
 
 void VendingMachineTester::testInsertPenny(){
-    mVendingMachine.InsertCoin(Penny);
+    mVendingMachine.InsertCoin(mPerfectPenny);
     CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(COIN_REJECTED) == 0 );
 }
 
@@ -196,44 +196,44 @@ void VendingMachineTester::testInsertCoinADimeWithTooMuchWeight(){
 }
 
 void VendingMachineTester::testSelectColaWithValidFunds(){
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(COLA);
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(THANK_YOU ) == 0);
 }
 
 void VendingMachineTester::testSelectColaWithInvalidFunds(){
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(COLA);
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(PRICE_100_CENTS ) == 0);
 }
 
 void VendingMachineTester::testSelectCandyWithValidFunds(){
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectNickel);
 	mVendingMachine.SelectProduct(CANDY);
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(THANK_YOU ) == 0);
 }
 
 void VendingMachineTester::testSelectCandyWithInvalidFunds(){
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CANDY);
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(PRICE_65_CENTS ) == 0);
 }
 
 void VendingMachineTester::testSelectChipsWithValidFunds(){
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CHIPS);
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(THANK_YOU ) == 0);
 }
 
 void VendingMachineTester::testSelectChipsWithInvalidFunds(){
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CHIPS);
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(PRICE_50_CENTS ) == 0);
 }
@@ -248,139 +248,139 @@ void VendingMachineTester::testInitialMessage(){
 }
 
 void VendingMachineTester::testResetMessageAfterThankYou(){
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CHIPS);
 	mVendingMachine.GetCurrentMessage();
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(INSERT_COIN) == 0);
 }
 
 void VendingMachineTester::testResetMessageAfterPriceMessage(){
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CHIPS);
 	mVendingMachine.GetCurrentMessage();
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(INSERT_COIN ) == 0);
 }
 
 void VendingMachineTester::testMessageDoesNotResetWithTheCurrentAmountInput(){
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.GetCurrentMessage();
     CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(AMOUNT_25_CENTS ) == 0);
 }
 
 void VendingMachineTester::testWhenCandyIsSoldOut(){
 	mVendingMachine.SetStockOfCandy(1);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectNickel);
 	mVendingMachine.SelectProduct(CANDY);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectNickel);
 	mVendingMachine.SelectProduct(CANDY);
 	CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(SOLD_OUT) == 0);
 }
 
 void VendingMachineTester::testWhenChipsAreSoldOut(){
 	mVendingMachine.SetStockOfChips(1);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CHIPS);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CHIPS);
 	CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(SOLD_OUT) == 0);
 }
 
 void VendingMachineTester::testWhenColaIsSoldOut(){
 	mVendingMachine.SetStockOfCola(1);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(COLA);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(COLA);
 	CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(SOLD_OUT) == 0);
 }
 
 void VendingMachineTester::testIfAQuarterWillBeReturnedWhenChipsPurchased(){
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), Quarter) && change.size() == 1);
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), mPerfectQuarter) && change.size() == 1);
 }
 
 void VendingMachineTester::testIfADimeWillBeReturnedWhenChipsPurchased(){
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectDime);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), Dime) && change.size() == 1);
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), mPerfectDime) && change.size() == 1);
 }
 
 void VendingMachineTester::testIfMultipleCoinsWillBeReturnedWhenChipsPurchased(){
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Nickel);
-	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectNickel);
+	mVendingMachine.InsertCoin(mPerfectDime);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), Quarter) &&
-		CheckIfCoinsAreEqual(change.at(1), Quarter) &&
-		CheckIfCoinsAreEqual(change.at(2), Dime) &&
-		CheckIfCoinsAreEqual(change.at(3), Nickel) &&
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), mPerfectQuarter) &&
+		CheckIfCoinsAreEqual(change.at(1), mPerfectQuarter) &&
+		CheckIfCoinsAreEqual(change.at(2), mPerfectDime) &&
+		CheckIfCoinsAreEqual(change.at(3), mPerfectNickel) &&
 		change.size() == 4);
 }
 
 void VendingMachineTester::testReturnChangeWhenOnlyOneQuarterIsPicked(){
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), Quarter) && change.size() == 1);
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), mPerfectQuarter) && change.size() == 1);
 }
 
 void VendingMachineTester::testReturnChangeWhenOnlyOneNickelIsPicked(){
-	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(mPerfectNickel);
 	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), Nickel) && change.size() == 1);
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change.at(0), mPerfectNickel) && change.size() == 1);
 }
 
 void VendingMachineTester::testReturnChangeWhenMultipleCoinsAreInsterted(){
-	mVendingMachine.InsertCoin(Nickel);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Nickel);
-	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(mPerfectNickel);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectNickel);
+	mVendingMachine.InsertCoin(mPerfectDime);
 	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT(
-		CheckIfCoinsAreEqual(change.at(0), Nickel) && 
-		CheckIfCoinsAreEqual(change.at(1), Quarter) && 
-		CheckIfCoinsAreEqual(change.at(2), Nickel) && 
-		CheckIfCoinsAreEqual(change.at(3), Dime) && 
+		CheckIfCoinsAreEqual(change.at(0), mPerfectNickel) && 
+		CheckIfCoinsAreEqual(change.at(1), mPerfectQuarter) && 
+		CheckIfCoinsAreEqual(change.at(2), mPerfectNickel) && 
+		CheckIfCoinsAreEqual(change.at(3), mPerfectDime) && 
 		change.size() == 4);
 }
 
 void VendingMachineTester::testVendingMachineShowsInsertCoinAfterChangeIsReturned(){
-	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(mPerfectNickel);
 	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(INSERT_COIN) == 0);
 }
 
 void VendingMachineTester::testVendingMachineDoesNotTryToReturnTheSameChangeMultipleTimes(){
-	mVendingMachine.InsertCoin(Nickel);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectNickel);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
@@ -392,12 +392,12 @@ void VendingMachineTester::testIfRejectedCoinCanBeReceivedOutOfTheChangeReturnSl
 	invalidCoin.weightInGrams = 99.0f;
 	invalidCoin.diameterInMilliMeters = 99.0f;
 	invalidCoin.thicknessInMilliMeters = 99.0f;
-	mVendingMachine.InsertCoin(Penny);
+	mVendingMachine.InsertCoin(mPerfectPenny);
 	mVendingMachine.InsertCoin(invalidCoin);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT( 
 		change.size() == 2  &&
-		CheckIfCoinsAreEqual(change.at(0), Penny) &&
+		CheckIfCoinsAreEqual(change.at(0), mPerfectPenny) &&
 		CheckIfCoinsAreEqual(change.at(1), invalidCoin)
 		);
 }
@@ -414,19 +414,19 @@ void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachi
 
 void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotHaveEnoughNickelsToGiveBackAfterPurchase(){
 	mVendingMachine.SetStockOfNickels(1);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectDime);
 	mVendingMachine.SelectProduct(CANDY);
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
 }
 
 void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotHaveEnoughDimesToGiveBackAfterPurchase(){
 	mVendingMachine.SetStockOfDimes(1);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.SelectProduct(CANDY);
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
 }
@@ -438,12 +438,12 @@ void VendingMachineTester::testIfDimesInCurrentTransactionWillBeReturnedInChange
     imperfectDime.diameterInMilliMeters = dimeDiameterInMilliMeters;
 	mVendingMachine.SetStockOfDimes(1);
 	mVendingMachine.SetStockOfNickels(1);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Dime);
-	mVendingMachine.InsertCoin(Dime);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectDime);
+	mVendingMachine.InsertCoin(mPerfectDime);
 	mVendingMachine.InsertCoin(imperfectDime);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
@@ -459,8 +459,8 @@ void VendingMachineTester::testIfQuartersInCurrentTransactionWillBeReturnedInCha
 	mVendingMachine.SetStockOfDimes(1);
 	mVendingMachine.SetStockOfNickels(1);
 	mVendingMachine.SetStockOfQuarters(1);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.InsertCoin(imperfectQuarter);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
@@ -476,8 +476,8 @@ void VendingMachineTester::testIfNickelsInCurrentTransactionWillBeReturnedInChan
 	mVendingMachine.SetStockOfDimes(1);
 	mVendingMachine.SetStockOfNickels(1);
 	mVendingMachine.SetStockOfQuarters(1);
-	mVendingMachine.InsertCoin(Quarter);
-	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
+	mVendingMachine.InsertCoin(mPerfectQuarter);
 	mVendingMachine.InsertCoin(imperfectNickel);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
@@ -492,18 +492,18 @@ void VendingMachineTester::testThatVendingMachineCanGoIntoExactChangeModeAndBack
 }
 
 void VendingMachineTester::setUp(){
-    Quarter.weightInGrams = quarterWeightInGrams;
-    Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
-    Quarter.diameterInMilliMeters = quarterDiameterInMilliMeters;
-    Nickel.weightInGrams = nickelWeightInGrams;
-    Nickel.thicknessInMilliMeters = nickelThicknessInMilliMeters;
-    Nickel.diameterInMilliMeters = nickelDiameterInMilliMeters;
-    Dime.weightInGrams = dimeWeightInGrams;
-    Dime.thicknessInMilliMeters = dimeThicknessInMilliMeters;
-    Dime.diameterInMilliMeters = dimeDiameterInMilliMeters;
-    Penny.weightInGrams = pennyWeightInGrams;
-    Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
-    Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
+    mPerfectQuarter.weightInGrams = quarterWeightInGrams;
+    mPerfectQuarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
+    mPerfectQuarter.diameterInMilliMeters = quarterDiameterInMilliMeters;
+    mPerfectNickel.weightInGrams = nickelWeightInGrams;
+    mPerfectNickel.thicknessInMilliMeters = nickelThicknessInMilliMeters;
+    mPerfectNickel.diameterInMilliMeters = nickelDiameterInMilliMeters;
+    mPerfectDime.weightInGrams = dimeWeightInGrams;
+    mPerfectDime.thicknessInMilliMeters = dimeThicknessInMilliMeters;
+    mPerfectDime.diameterInMilliMeters = dimeDiameterInMilliMeters;
+    mPerfectPenny.weightInGrams = pennyWeightInGrams;
+    mPerfectPenny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
+    mPerfectPenny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 	mVendingMachine.SetStockOfCandy(5);
 	mVendingMachine.SetStockOfChips(5);
 	mVendingMachine.SetStockOfCola(5);
