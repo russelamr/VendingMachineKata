@@ -447,9 +447,7 @@ void VendingMachineTester::testIfDimesInCurrentTransactionWillBeReturnedInChange
 	mVendingMachine.InsertCoin(imperfectDime);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	
-	std::cout << "Size: " << change.size() << std::endl;
-	std::cout << "w in g: " << change.at(1).weightInGrams << std::endl;
+
 	CPPUNIT_ASSERT(change.at(0).weightInGrams == dimeWeightInGrams + .005f && change.size() == 2);
 }
 

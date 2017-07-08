@@ -104,15 +104,15 @@ std::string VendingMachine::CreateNewMessageInDollarsWithAmountCents(std::string
 	return tagToPutBeforeAmount + ss.str();
 }
 
-void VendingMachine::SetStockOfCandy(int stockOfCandy){
+void VendingMachine::SetStockOfCandy(unsigned int stockOfCandy){
 	currentStockOfCandy = stockOfCandy;
 }
 
-void VendingMachine::SetStockOfChips(int stockOfChips){
+void VendingMachine::SetStockOfChips(unsigned int stockOfChips){
 	currentStockOfChips = stockOfChips;
 }
 
-void VendingMachine::SetStockOfCola(int stockOfCola){
+void VendingMachine::SetStockOfCola(unsigned int stockOfCola){
 	currentStockOfCola = stockOfCola;
 }
 
@@ -168,7 +168,7 @@ void VendingMachine::ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot(){
 	changeInReturnSlot.insert(changeInReturnSlot.end(), changeInCurrentTransaction.begin(), changeInCurrentTransaction.end());
 }
 
-void VendingMachine::SetStockOfDimes(int numberOfDimes){
+void VendingMachine::SetStockOfDimes(unsigned int numberOfDimes){
 	currentStockOfDimes.clear();
 	for(int i = 0; i < numberOfDimes; i++){
 		currentStockOfDimes.push_back(Dime);
@@ -180,7 +180,7 @@ void VendingMachine::SetStockOfDimes(int numberOfDimes){
 	}
 }
 
-void VendingMachine::SetStockOfNickels(int numberOfNickels){
+void VendingMachine::SetStockOfNickels(unsigned int numberOfNickels){
 	currentStockOfNickels.clear();
 	for(int i = 0; i < numberOfNickels; i++){
 		currentStockOfNickels.push_back(Nickel);
@@ -192,7 +192,7 @@ void VendingMachine::SetStockOfNickels(int numberOfNickels){
 	}
 }
 
-void VendingMachine::SetStockOfQuarters(int numberOfQuarters){
+void VendingMachine::SetStockOfQuarters(unsigned int numberOfQuarters){
 	for(int i = 0; i < numberOfQuarters; i++){
 		currentStockOfQuarters.push_back(Quarter);
 	}

@@ -17,12 +17,12 @@ public:
     VendingMachine();
     void InsertCoin(Coin inputCoin);
 	void SelectProduct(ProductType productType);
-	void SetStockOfCandy(int stockOfCandy);
-	void SetStockOfChips(int stockOfChips);
-	void SetStockOfCola(int stockOfCola);
-	void SetStockOfDimes(int numberOfDimes);
-	void SetStockOfNickels(int numberOfNickels);
-	void SetStockOfQuarters(int numberOfQuarters);
+	void SetStockOfCandy(unsigned int stockOfCandy);
+	void SetStockOfChips(unsigned int stockOfChips);
+	void SetStockOfCola(unsigned int stockOfCola);
+	void SetStockOfDimes(unsigned int numberOfDimes);
+	void SetStockOfNickels(unsigned int numberOfNickels);
+	void SetStockOfQuarters(unsigned int numberOfQuarters);
 	void ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::string GetCurrentMessage();
 	std::vector<Coin> RemoveChangeFromTheChangeReturnSlot();
