@@ -141,19 +141,15 @@ void VendingMachine::MakeChange(int amountToBeTurnedIntoChangeInCents){
 	int numberOfQuartersToBeReturned = amountToBeTurnedIntoChangeInCents / quarterValueInCents;
 	AddOneTypeOfCurrencyToReturnSlot(numberOfQuartersToBeReturned, currentStockOfQuarters);
 	int amountLeftToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % quarterValueInCents;
+	
 	int numberOfDimesToBeReturned = amountLeftToBeTurnedIntoChangeInCents / dimeValueInCents;
 	AddOneTypeOfCurrencyToReturnSlot(numberOfDimesToBeReturned, currentStockOfDimes);
 	amountLeftToBeTurnedIntoChangeInCents = amountLeftToBeTurnedIntoChangeInCents % dimeValueInCents;
+	
 	int numberOfNickelsToBeReturned = amountLeftToBeTurnedIntoChangeInCents / nickelValueInCents;
 	AddOneTypeOfCurrencyToReturnSlot(numberOfNickelsToBeReturned, currentStockOfNickels);
 	
-	if(currentStockOfNickels.size() == 0){
-		currentlyInExactChangeMode = true;
-	}
-	
-	if(currentStockOfDimes.size() == 0){
-		currentlyInExactChangeMode = true;
-	}
+	CheckForTheExactChangeCondition();
 }
 
 void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn){
@@ -173,11 +169,7 @@ void VendingMachine::SetStockOfDimes(unsigned int numberOfDimes){
 	for(int i = 0; i < numberOfDimes; i++){
 		currentStockOfDimes.push_back(Dime);
 	}
-	if(currentStockOfDimes.size() == 0){
-		currentlyInExactChangeMode = true; 
-	} else {
-		currentlyInExactChangeMode = false;
-	}
+	CheckForTheExactChangeCondition();
 }
 
 void VendingMachine::SetStockOfNickels(unsigned int numberOfNickels){
@@ -185,11 +177,7 @@ void VendingMachine::SetStockOfNickels(unsigned int numberOfNickels){
 	for(int i = 0; i < numberOfNickels; i++){
 		currentStockOfNickels.push_back(Nickel);
 	}
-	if(currentStockOfNickels.size() == 0){
-		currentlyInExactChangeMode = true;
-	} else {
-		currentlyInExactChangeMode = false;
-	}
+	CheckForTheExactChangeCondition();
 }
 
 void VendingMachine::SetStockOfQuarters(unsigned int numberOfQuarters){
@@ -210,5 +198,13 @@ void VendingMachine::SortCoinsIntoTheirRespectiveChangeSlots(std::vector<Coin> c
 		} else { 
 			changeInReturnSlot.push_back(inputCoin);
 		}
+	}
+}
+
+void VendingMachine::CheckForTheExactChangeCondition(){
+	if(currentStockOfNickels.size() == 0 || currentStockOfDimes.size() == 0){
+		currentlyInExactChangeMode = true;
+	} else {
+		currentlyInExactChangeMode = false;
 	}
 }

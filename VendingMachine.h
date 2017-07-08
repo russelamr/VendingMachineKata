@@ -34,6 +34,7 @@ private:
 	void MakeChange(int amountToBeTurnedIntoChangeInCents);
 	void AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn);
 	void SortCoinsIntoTheirRespectiveChangeSlots(std::vector<Coin> coins);
+	void CheckForTheExactChangeCondition();
     Coin Quarter;
     Coin Nickel;
     Coin Dime;
