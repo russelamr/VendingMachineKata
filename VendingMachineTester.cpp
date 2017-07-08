@@ -485,6 +485,12 @@ void VendingMachineTester::testIfNickelsInCurrentTransactionWillBeReturnedInChan
 	CPPUNIT_ASSERT(change.at(0).weightInGrams == nickelWeightInGrams + .005f && change.size() == 1);
 }
 
+void VendingMachineTester::testThatVendingMachineCanGoIntoExactChangeModeAndBackToNormalMode(){
+	mVendingMachine.SetStockOfDimes(0);
+	mVendingMachine.SetStockOfDimes(10);
+	CPPUNIT_ASSERT( mVendingMachine.GetCurrentMessage().compare(INSERT_COIN) == 0);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;

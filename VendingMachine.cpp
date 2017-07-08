@@ -1,6 +1,5 @@
 //Vending Machine Implementation
 #include "VendingMachine.h"
-#include <iostream>
 
 VendingMachine::VendingMachine(){
     perfectQuarter.weightInGrams = quarterWeightInGrams;

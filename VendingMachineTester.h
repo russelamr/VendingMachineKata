@@ -61,6 +61,7 @@ class VendingMachineTester : public CppUnit::TestFixture
 	CPPUNIT_TEST(testIfDimesInCurrentTransactionWillBeReturnedInChange);
 	CPPUNIT_TEST(testIfQuartersInCurrentTransactionWillBeReturnedInChange);
 	CPPUNIT_TEST(testIfNickelsInCurrentTransactionWillBeReturnedInChange);
+	CPPUNIT_TEST(testThatVendingMachineCanGoIntoExactChangeModeAndBackToNormalMode);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -122,6 +123,7 @@ protected:
 	void testIfDimesInCurrentTransactionWillBeReturnedInChange();
 	void testIfQuartersInCurrentTransactionWillBeReturnedInChange();
 	void testIfNickelsInCurrentTransactionWillBeReturnedInChange();
+	void testThatVendingMachineCanGoIntoExactChangeModeAndBackToNormalMode();
 	
 	const static float testerWeightToleranceInGrams = 0.01f;
 	const static float testerThicknessToleranceInMilliMeters = 0.01f;

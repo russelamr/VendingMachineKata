@@ -42,13 +42,13 @@ private:
 	std::string currentMessage;
 	std::vector<Coin> changeInReturnSlot;
 	std::vector<Coin> changeInCurrentTransaction;
+	std::vector<Coin> currentStockOfQuarters;
+	std::vector<Coin> currentStockOfDimes;
+	std::vector<Coin> currentStockOfNickels;
 	int currentAmountInsertedInCents;
 	int currentStockOfCandy;
 	int currentStockOfChips;
 	int currentStockOfCola;
-	std::vector<Coin> currentStockOfQuarters;
-	std::vector<Coin> currentStockOfDimes;
-	std::vector<Coin> currentStockOfNickels;
 	bool currentlyInExactChangeMode;
     static float const vendingMachineWeightToleranceInGrams = 0.01f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
