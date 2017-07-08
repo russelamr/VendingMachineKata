@@ -119,7 +119,7 @@ std::string VendingMachine::AttemptToPurchaseItem(int amountInsertedInCents, int
 	}
 }
 
-std::vector<Coin> VendingMachine::RemoveChange(){
+std::vector<Coin> VendingMachine::RemoveChangeFromTheChangeReturnSlot(){
 	return changeInReturnSlot;
 }
 
@@ -137,7 +137,7 @@ void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Co
 	}
 }
 
-std::vector<Coin> VendingMachine::ReturnCoins(){
+void VendingMachine::ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot(){
 	currentMessage = INSERT_COIN;
-	return changeInCurrentTransaction;
+	changeInReturnSlot.insert(changeInReturnSlot.end(), changeInCurrentTransaction.begin(), changeInCurrentTransaction.end());
 }

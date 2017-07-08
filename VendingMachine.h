@@ -21,9 +21,9 @@ public:
 	void SetStockOfCandy(int stockOfCandy);
 	void SetStockOfChips(int stockOfChips);
 	void SetStockOfCola(int stockOfCola);
+	void ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::string GetCurrentMessage();
-	std::vector<Coin> ReturnCoins();
-	std::vector<Coin> RemoveChange();
+	std::vector<Coin> RemoveChangeFromTheChangeReturnSlot();
 	static bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
 private:
     bool CheckForAValidCoin(Coin inputCoin, Coin validCoin);

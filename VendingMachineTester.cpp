@@ -314,7 +314,7 @@ void VendingMachineTester::testIfAQuarterWillBeReturnedWhenChipsPurchased(){
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.SelectProduct(CHIPS);
-	std::vector<Coin> change = mVendingMachine.RemoveChange();
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) && change.size() == 1);
 }
 
@@ -323,7 +323,7 @@ void VendingMachineTester::testIfADimeWillBeReturnedWhenChipsPurchased(){
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.InsertCoin(Dime);
 	mVendingMachine.SelectProduct(CHIPS);
-	std::vector<Coin> change = mVendingMachine.RemoveChange();
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Dime) && change.size() == 1);
 }
 
@@ -335,7 +335,7 @@ void VendingMachineTester::testIfMultipleCoinsWillBeReturnedWhenChipsPurchased()
 	mVendingMachine.InsertCoin(Nickel);
 	mVendingMachine.InsertCoin(Dime);
 	mVendingMachine.SelectProduct(CHIPS);
-	std::vector<Coin> change = mVendingMachine.RemoveChange();
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) &&
 		CheckForAValidCoin(change[1], Quarter) &&
 		CheckForAValidCoin(change[2], Dime) &&
@@ -345,13 +345,15 @@ void VendingMachineTester::testIfMultipleCoinsWillBeReturnedWhenChipsPurchased()
 
 void VendingMachineTester::testReturnChangeWhenOnlyOneQuarterIsPicked(){
 	mVendingMachine.InsertCoin(Quarter);
-	std::vector<Coin> change = mVendingMachine.ReturnCoins();
+	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) && change.size() == 1);
 }
 
 void VendingMachineTester::testReturnChangeWhenOnlyOneNickelIsPicked(){
 	mVendingMachine.InsertCoin(Nickel);
-	std::vector<Coin> change = mVendingMachine.ReturnCoins();
+	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Nickel) && change.size() == 1);
 }
 
@@ -360,7 +362,8 @@ void VendingMachineTester::testReturnChangeWhenMultipleCoinsAreInsterted(){
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.InsertCoin(Nickel);
 	mVendingMachine.InsertCoin(Dime);
-	std::vector<Coin> change = mVendingMachine.ReturnCoins();
+	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT(
 		CheckForAValidCoin(change[0], Nickel) && 
 		CheckForAValidCoin(change[1], Quarter) && 
@@ -371,7 +374,7 @@ void VendingMachineTester::testReturnChangeWhenMultipleCoinsAreInsterted(){
 
 void VendingMachineTester::testVendingMachineShowsInsertCoinAfterChangeIsReturned(){
 	mVendingMachine.InsertCoin(Nickel);
-	std::vector<Coin> change = mVendingMachine.ReturnCoins();
+	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(INSERT_COIN) == 0);
 }
 
