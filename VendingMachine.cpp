@@ -16,6 +16,7 @@ VendingMachine::VendingMachine(){
     Penny.thicknessInMilliMeters = pennyThicknessInMilliMeters;
     Penny.diameterInMilliMeters = pennyDiameterInMilliMeters;
 	currentMessage = INSERT_COIN;
+	currentlyInExactChangeMode = true;
 	currentAmountInsertedInCents = 0;
 	currentStockOfCandy = 0;
 	currentStockOfChips = 0;
@@ -71,6 +72,10 @@ std::string VendingMachine::GetCurrentMessage(){
 		currentMessage = INSERT_COIN;
 	} else if(currentMessage.find(PRICE) == 0){
 		currentMessage = INSERT_COIN;
+	}
+	
+	if(currentlyInExactChangeMode && currentMessage.compare(INSERT_COIN) == 0 ){
+		messageToPrint = EXACT_CHANGE_ONLY;
 	}
 	return messageToPrint;
 }
@@ -133,11 +138,20 @@ std::vector<Coin> VendingMachine::RemoveChangeFromTheChangeReturnSlot(){
 }
 
 void VendingMachine::MakeChange(int amountToBeTurnedIntoChangeInCents){
-	AddOneTypeOfCurrencyToReturnSlot(amountToBeTurnedIntoChangeInCents / quarterValueInCents, Quarter);
-	amountToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % quarterValueInCents;
-	AddOneTypeOfCurrencyToReturnSlot(amountToBeTurnedIntoChangeInCents / dimeValueInCents, Dime);
-	amountToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % dimeValueInCents;
-	AddOneTypeOfCurrencyToReturnSlot(amountToBeTurnedIntoChangeInCents / nickelValueInCents, Nickel);
+	int numberOfQuartersToBeReturned = amountToBeTurnedIntoChangeInCents / quarterValueInCents;
+	AddOneTypeOfCurrencyToReturnSlot(numberOfQuartersToBeReturned, Quarter);
+	int amountLeftToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % quarterValueInCents;
+	int numberOfDimesToBeReturned = amountLeftToBeTurnedIntoChangeInCents / dimeValueInCents;
+	AddOneTypeOfCurrencyToReturnSlot(numberOfDimesToBeReturned, Dime);
+	amountLeftToBeTurnedIntoChangeInCents = amountLeftToBeTurnedIntoChangeInCents % dimeValueInCents;
+	int numberOfNickelsToBeReturned = amountLeftToBeTurnedIntoChangeInCents / nickelValueInCents;
+	AddOneTypeOfCurrencyToReturnSlot(numberOfNickelsToBeReturned, Nickel);
+	
+	currentStockOfNickels -= numberOfNickelsToBeReturned;
+	
+	if(currentStockOfNickels == 0){
+		currentlyInExactChangeMode = true;
+	}
 }
 
 void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Coin coin){
@@ -154,13 +168,17 @@ void VendingMachine::ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot(){
 void VendingMachine::SetStockOfDimes(int numberOfDimes){
 	currentStockOfDimes = numberOfDimes;
 	if(currentStockOfDimes == 0){
-		currentMessage = EXACT_CHANGE_ONLY;
+		currentlyInExactChangeMode = true;
+	} else {
+		currentlyInExactChangeMode = false;
 	}
 }
 
 void VendingMachine::SetStockOfNickels(int numberOfNickels){
 	currentStockOfNickels = numberOfNickels;
 	if(currentStockOfNickels == 0){
-		currentMessage = EXACT_CHANGE_ONLY;
+		currentlyInExactChangeMode = true;
+	} else {
+		currentlyInExactChangeMode = false;
 	}
 }

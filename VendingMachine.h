@@ -45,6 +45,7 @@ private:
 	int currentStockOfCola;
 	int currentStockOfDimes;
 	int currentStockOfNickels;
+	bool currentlyInExactChangeMode;
     static float const vendingMachineWeightToleranceInGrams = 0.01f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
     static float const vendingMachineDiameterToleranceInMilliMeters = 0.01f;  
