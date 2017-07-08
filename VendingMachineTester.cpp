@@ -422,6 +422,15 @@ void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachi
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
 }
 
+void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotHaveEnoughDimesToGiveBackAfterPurchase(){
+	mVendingMachine.SetStockOfDimes(1);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);;
+	mVendingMachine.SelectProduct(CANDY);
+	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;

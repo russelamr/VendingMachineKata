@@ -148,8 +148,13 @@ void VendingMachine::MakeChange(int amountToBeTurnedIntoChangeInCents){
 	AddOneTypeOfCurrencyToReturnSlot(numberOfNickelsToBeReturned, Nickel);
 	
 	currentStockOfNickels -= numberOfNickelsToBeReturned;
+	currentStockOfDimes -= numberOfDimesToBeReturned;
 	
 	if(currentStockOfNickels == 0){
+		currentlyInExactChangeMode = true;
+	}
+	
+	if(currentStockOfDimes == 0){
 		currentlyInExactChangeMode = true;
 	}
 }

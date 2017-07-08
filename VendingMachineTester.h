@@ -57,6 +57,7 @@ class VendingMachineTester : public CppUnit::TestFixture
 	CPPUNIT_TEST(testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotStockEnoughDimesToGiveBack);
 	CPPUNIT_TEST(testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotStockEnoughNickelsToGiveBack);
 	CPPUNIT_TEST(testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotHaveEnoughNickelsToGiveBackAfterPurchase);
+	CPPUNIT_TEST(testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotHaveEnoughDimesToGiveBackAfterPurchase);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -114,6 +115,7 @@ protected:
 	void testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotStockEnoughDimesToGiveBack();
 	void testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotStockEnoughNickelsToGiveBack();
 	void testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotHaveEnoughNickelsToGiveBackAfterPurchase();
+	void testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotHaveEnoughDimesToGiveBackAfterPurchase();
 	
 	const static float testerWeightToleranceInGrams = 0.01f;
 	const static float testerThicknessToleranceInMilliMeters = 0.01f;
