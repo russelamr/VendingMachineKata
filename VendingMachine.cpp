@@ -79,7 +79,7 @@ std::string VendingMachine::GetCurrentMessage(){
 }
 
 void VendingMachine::SelectProduct(ProductType productType){
-	int productCostInCents = 0;
+	unsigned int productCostInCents = 0;
 	switch (productType){
 		case COLA:
 			mCurrentMessage = AttemptToPurchaseItem(mCurrentAmountInsertedInCents, colaCostInCents, mCurrentStockOfCola);
@@ -96,7 +96,7 @@ void VendingMachine::SelectProduct(ProductType productType){
 	}
 }
 
-std::string VendingMachine::CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents){
+std::string VendingMachine::CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, unsigned int amountInCents){
 	std::stringstream ss;
 	float amountInDollars = static_cast<float>(amountInCents) * centsToDollars;
 	ss << std::fixed << std::setprecision(2) << amountInDollars;
@@ -115,7 +115,7 @@ void VendingMachine::SetStockOfCola(unsigned int stockOfCola){
 	mCurrentStockOfCola = stockOfCola;
 }
 
-std::string VendingMachine::AttemptToPurchaseItem(int amountInsertedInCents, int productCostInCents, int &currentStock){
+std::string VendingMachine::AttemptToPurchaseItem(unsigned int amountInsertedInCents, unsigned int productCostInCents, unsigned int &currentStock){
 	if(currentStock > 0){
 		if(amountInsertedInCents < productCostInCents){
 			return CreateNewMessageInDollarsWithAmountCents(PRICE, productCostInCents);
@@ -136,23 +136,23 @@ std::vector<Coin> VendingMachine::RemoveChangeFromTheChangeReturnSlot(){
 	return mChangeInReturnSlotThatIsToBeReturned;
 }
 
-void VendingMachine::MakeChange(int amountToBeTurnedIntoChangeInCents){
-	int numberOfQuartersToBeReturned = amountToBeTurnedIntoChangeInCents / quarterValueInCents;
+void VendingMachine::MakeChange(unsigned int amountToBeTurnedIntoChangeInCents){
+	unsigned int numberOfQuartersToBeReturned = amountToBeTurnedIntoChangeInCents / quarterValueInCents;
 	AddOneTypeOfCurrencyToReturnSlot(numberOfQuartersToBeReturned, mCurrentStockOfQuarters);
-	int amountLeftToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % quarterValueInCents;
+	unsigned int amountLeftToBeTurnedIntoChangeInCents = amountToBeTurnedIntoChangeInCents % quarterValueInCents;
 	
-	int numberOfDimesToBeReturned = amountLeftToBeTurnedIntoChangeInCents / dimeValueInCents;
+	unsigned int numberOfDimesToBeReturned = amountLeftToBeTurnedIntoChangeInCents / dimeValueInCents;
 	AddOneTypeOfCurrencyToReturnSlot(numberOfDimesToBeReturned, mCurrentStockOfDimes);
 	amountLeftToBeTurnedIntoChangeInCents = amountLeftToBeTurnedIntoChangeInCents % dimeValueInCents;
 	
-	int numberOfNickelsToBeReturned = amountLeftToBeTurnedIntoChangeInCents / nickelValueInCents;
+	unsigned int numberOfNickelsToBeReturned = amountLeftToBeTurnedIntoChangeInCents / nickelValueInCents;
 	AddOneTypeOfCurrencyToReturnSlot(numberOfNickelsToBeReturned, mCurrentStockOfNickels);
 	
 	CheckForTheExactChangeCondition();
 }
 
-void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn){
-	for(int i=0; i< numberOfCoinsToAdd; i++) {
+void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(unsigned int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn){
+	for(unsigned int i=0; i< numberOfCoinsToAdd; i++) {
 		mChangeInReturnSlot.push_back(vectorOfTypeOfCoinsToReturn.back());
 		vectorOfTypeOfCoinsToReturn.pop_back();
 	}
@@ -165,7 +165,7 @@ void VendingMachine::ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot(){
 
 void VendingMachine::SetStockOfDimes(unsigned int numberOfDimes){
 	mCurrentStockOfDimes.clear();
-	for(int i = 0; i < numberOfDimes; i++){
+	for(unsigned int i = 0; i < numberOfDimes; i++){
 		mCurrentStockOfDimes.push_back(mPerfectDime);
 	}
 	CheckForTheExactChangeCondition();
@@ -173,14 +173,14 @@ void VendingMachine::SetStockOfDimes(unsigned int numberOfDimes){
 
 void VendingMachine::SetStockOfNickels(unsigned int numberOfNickels){
 	mCurrentStockOfNickels.clear();
-	for(int i = 0; i < numberOfNickels; i++){
+	for(unsigned int i = 0; i < numberOfNickels; i++){
 		mCurrentStockOfNickels.push_back(mPerfectNickel);
 	}
 	CheckForTheExactChangeCondition();
 }
 
 void VendingMachine::SetStockOfQuarters(unsigned int numberOfQuarters){
-	for(int i = 0; i < numberOfQuarters; i++){
+	for(unsigned int i = 0; i < numberOfQuarters; i++){
 		mCurrentStockOfQuarters.push_back(mPerfectQuarter);
 	}
 }

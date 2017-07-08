@@ -29,10 +29,10 @@ public:
 	static bool FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon);
 private:
     bool CheckForAValidCoin(Coin inputCoin, Coin validCoin);
-	std::string CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, int amountInCents);
-	std::string AttemptToPurchaseItem(int amountInsertedInCents, int productCostInCents, int &currentStock);
-	void MakeChange(int amountToBeTurnedIntoChangeInCents);
-	void AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn);
+	std::string CreateNewMessageInDollarsWithAmountCents(std::string tagToPutBeforeAmount, unsigned int amountInCents);
+	std::string AttemptToPurchaseItem(unsigned int amountInsertedInCents, unsigned int productCostInCents, unsigned int &currentStock);
+	void MakeChange(unsigned int amountToBeTurnedIntoChangeInCents);
+	void AddOneTypeOfCurrencyToReturnSlot(unsigned int numberOfCoinsToAdd, std::vector<Coin> &vectorOfTypeOfCoinsToReturn);
 	void SortCoinsIntoTheirRespectiveChangeSlots(std::vector<Coin> coins);
 	void CheckForTheExactChangeCondition();
     Coin mPerfectQuarter;
@@ -45,10 +45,10 @@ private:
 	std::vector<Coin> mCurrentStockOfQuarters;
 	std::vector<Coin> mCurrentStockOfDimes;
 	std::vector<Coin> mCurrentStockOfNickels;
-	int mCurrentAmountInsertedInCents;
-	int mCurrentStockOfCandy;
-	int mCurrentStockOfChips;
-	int mCurrentStockOfCola;
+	unsigned int mCurrentAmountInsertedInCents;
+	unsigned int mCurrentStockOfCandy;
+	unsigned int mCurrentStockOfChips;
+	unsigned int mCurrentStockOfCola;
 	bool mCurrentlyInExactChangeMode;
     static float const mVendingMachineWeightToleranceInGrams = 0.01f;
     static float const mVendingMachineThicknessToleranceInMilliMeters = 0.01f;
