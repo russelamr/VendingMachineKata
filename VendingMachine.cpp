@@ -20,6 +20,8 @@ VendingMachine::VendingMachine(){
 	currentStockOfCandy = 0;
 	currentStockOfChips = 0;
 	currentStockOfCola = 0;
+	currentStockOfDimes = 0;
+	currentStockOfNickels = 0;
 }
 
 void VendingMachine::InsertCoin(Coin inputCoin){
@@ -152,6 +154,13 @@ void VendingMachine::ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot(){
 void VendingMachine::SetStockOfDimes(int numberOfDimes){
 	currentStockOfDimes = numberOfDimes;
 	if(currentStockOfDimes == 0){
+		currentMessage = EXACT_CHANGE_ONLY;
+	}
+}
+
+void VendingMachine::SetStockOfNickels(int numberOfNickels){
+	currentStockOfNickels = numberOfNickels;
+	if(currentStockOfNickels == 0){
 		currentMessage = EXACT_CHANGE_ONLY;
 	}
 }

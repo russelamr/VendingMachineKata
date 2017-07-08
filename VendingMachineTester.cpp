@@ -407,6 +407,11 @@ void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachi
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
 }
 
+void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachineRunsOutOfNickelsToGiveBack(){
+	mVendingMachine.SetStockOfNickels(0);
+	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
@@ -424,6 +429,7 @@ void VendingMachineTester::setUp(){
 	mVendingMachine.SetStockOfChips(5);
 	mVendingMachine.SetStockOfCola(5);
 	mVendingMachine.SetStockOfDimes(10);
+	mVendingMachine.SetStockOfNickels(10);
 }
 
 void VendingMachineTester::tearDown(){
