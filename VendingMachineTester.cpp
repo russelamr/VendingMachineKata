@@ -369,6 +369,11 @@ void VendingMachineTester::testReturnChangeWhenMultipleCoinsAreInsterted(){
 		change.size() == 4);
 }
 
+void VendingMachineTester::testVendingMachineShowsInsertCoinAfterChangeIsReturned(){
+	mVendingMachine.InsertCoin(Nickel);
+	std::vector<Coin> change = mVendingMachine.ReturnCoins();
+	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(INSERT_COIN) == 0);
+}
 
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;

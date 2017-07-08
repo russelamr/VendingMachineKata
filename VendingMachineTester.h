@@ -51,6 +51,7 @@ class VendingMachineTester : public CppUnit::TestFixture
 	CPPUNIT_TEST(testReturnChangeWhenOnlyOneQuarterIsPicked);
 	CPPUNIT_TEST(testReturnChangeWhenOnlyOneNickelIsPicked);
 	CPPUNIT_TEST(testReturnChangeWhenMultipleCoinsAreInsterted);
+	CPPUNIT_TEST(testVendingMachineShowsInsertCoinAfterChangeIsReturned);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -102,7 +103,7 @@ protected:
 	void testReturnChangeWhenOnlyOneQuarterIsPicked();
 	void testReturnChangeWhenOnlyOneNickelIsPicked();
 	void testReturnChangeWhenMultipleCoinsAreInsterted();
-	//void testVendingMachineShowsInsertCoinAfterChangeIsReturned();
+	void testVendingMachineShowsInsertCoinAfterChangeIsReturned();
 	
 	const static float testerWeightToleranceInGrams = 0.01f;
 	const static float testerThicknessToleranceInMilliMeters = 0.01f;

@@ -138,5 +138,6 @@ void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Co
 }
 
 std::vector<Coin> VendingMachine::ReturnCoins(){
+	currentMessage = INSERT_COIN;
 	return changeInCurrentTransaction;
 }
