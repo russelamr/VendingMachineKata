@@ -451,6 +451,40 @@ void VendingMachineTester::testIfDimesInCurrentTransactionWillBeReturnedInChange
 	CPPUNIT_ASSERT(change.at(0).weightInGrams == dimeWeightInGrams + .005f && change.size() == 2);
 }
 
+void VendingMachineTester::testIfQuartersInCurrentTransactionWillBeReturnedInChange(){
+	Coin imperfectQuarter;
+	imperfectQuarter.weightInGrams = quarterWeightInGrams + .005f;
+    imperfectQuarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
+    imperfectQuarter.diameterInMilliMeters = quarterDiameterInMilliMeters;
+	mVendingMachine.SetStockOfDimes(1);
+	mVendingMachine.SetStockOfNickels(1);
+	mVendingMachine.SetStockOfQuarters(1);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(imperfectQuarter);
+	mVendingMachine.SelectProduct(CHIPS);
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
+
+	CPPUNIT_ASSERT(change.at(0).weightInGrams == quarterWeightInGrams + .005f && change.size() == 1);
+}
+
+void VendingMachineTester::testIfNickelsInCurrentTransactionWillBeReturnedInChange(){
+	Coin imperfectNickel;
+	imperfectNickel.weightInGrams = nickelWeightInGrams + .005f;
+    imperfectNickel.thicknessInMilliMeters = nickelThicknessInMilliMeters;
+    imperfectNickel.diameterInMilliMeters = nickelDiameterInMilliMeters;
+	mVendingMachine.SetStockOfDimes(1);
+	mVendingMachine.SetStockOfNickels(1);
+	mVendingMachine.SetStockOfQuarters(1);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.InsertCoin(imperfectNickel);
+	mVendingMachine.SelectProduct(CHIPS);
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
+
+	CPPUNIT_ASSERT(change.at(0).weightInGrams == nickelWeightInGrams + .005f && change.size() == 1);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
