@@ -37,6 +37,7 @@ private:
     Coin Penny;
 	std::string currentMessage;
 	std::vector<Coin> changeInReturnSlot;
+	std::vector<Coin> changeInCurrentTransaction;
 	int currentAmountInsertedInCents;
 	int currentStockOfCandy;
 	int currentStockOfChips;

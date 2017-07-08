@@ -35,6 +35,7 @@ void VendingMachine::InsertCoin(Coin inputCoin){
     } else { 
         currentMessage = COIN_REJECTED;
     }
+	changeInCurrentTransaction.push_back(inputCoin);
 }
 
 bool VendingMachine::FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon){
@@ -137,7 +138,5 @@ void VendingMachine::AddOneTypeOfCurrencyToReturnSlot(int numberOfCoinsToAdd, Co
 }
 
 std::vector<Coin> VendingMachine::ReturnCoins(){
-	std::vector<Coin> returnCoins;
-	returnCoins.push_back(Quarter);
-	return returnCoins;
+	return changeInCurrentTransaction;
 }
