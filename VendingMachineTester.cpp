@@ -402,12 +402,12 @@ void VendingMachineTester::testIfRejectedCoinCanBeReceivedOutOfTheChangeReturnSl
 		);
 }
 
-void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachineRunsOutOfDimesToGiveBack(){
+void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotStockEnoughDimesToGiveBack(){
 	mVendingMachine.SetStockOfDimes(0);
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
 }
 
-void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachineRunsOutOfNickelsToGiveBack(){
+void VendingMachineTester::testIfExactChangeMessageWillBeDisplayedIfVendingMachineDoesNotStockEnoughNickelsToGiveBack(){
 	mVendingMachine.SetStockOfNickels(0);
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(EXACT_CHANGE_ONLY) == 0);
 }
