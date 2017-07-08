@@ -113,7 +113,7 @@ protected:
 	const static float testerThicknessToleranceInMilliMeters = 0.01f;
 	const static float testerDiameterToleranceInMilliMeters = 0.01f;
 private:
-	bool CheckForAValidCoin(Coin inputCoin, Coin validCoin);
+	bool CheckIfCoinsAreEqual(Coin inputCoin, Coin validCoin);
     VendingMachine mVendingMachine;
     Coin Quarter;
     Coin Nickel;

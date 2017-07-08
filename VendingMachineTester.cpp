@@ -3,7 +3,7 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION( VendingMachineTester );
 
-bool VendingMachineTester::CheckForAValidCoin(Coin inputCoin, Coin validCoin){
+bool VendingMachineTester::CheckIfCoinsAreEqual(Coin inputCoin, Coin validCoin){
 	if(!VendingMachine::FloatValuesAreWithinEpsilon(inputCoin.weightInGrams, validCoin.weightInGrams, testerWeightToleranceInGrams)) 
         return false;
     if(!VendingMachine::FloatValuesAreWithinEpsilon(inputCoin.thicknessInMilliMeters, validCoin.thicknessInMilliMeters, testerThicknessToleranceInMilliMeters)) 
@@ -315,7 +315,7 @@ void VendingMachineTester::testIfAQuarterWillBeReturnedWhenChipsPurchased(){
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) && change.size() == 1);
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change[0], Quarter) && change.size() == 1);
 }
 
 void VendingMachineTester::testIfADimeWillBeReturnedWhenChipsPurchased(){
@@ -324,7 +324,7 @@ void VendingMachineTester::testIfADimeWillBeReturnedWhenChipsPurchased(){
 	mVendingMachine.InsertCoin(Dime);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Dime) && change.size() == 1);
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change[0], Dime) && change.size() == 1);
 }
 
 void VendingMachineTester::testIfMultipleCoinsWillBeReturnedWhenChipsPurchased(){
@@ -336,10 +336,10 @@ void VendingMachineTester::testIfMultipleCoinsWillBeReturnedWhenChipsPurchased()
 	mVendingMachine.InsertCoin(Dime);
 	mVendingMachine.SelectProduct(CHIPS);
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) &&
-		CheckForAValidCoin(change[1], Quarter) &&
-		CheckForAValidCoin(change[2], Dime) &&
-		CheckForAValidCoin(change[3], Nickel) &&
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change[0], Quarter) &&
+		CheckIfCoinsAreEqual(change[1], Quarter) &&
+		CheckIfCoinsAreEqual(change[2], Dime) &&
+		CheckIfCoinsAreEqual(change[3], Nickel) &&
 		change.size() == 4);
 }
 
@@ -347,14 +347,14 @@ void VendingMachineTester::testReturnChangeWhenOnlyOneQuarterIsPicked(){
 	mVendingMachine.InsertCoin(Quarter);
 	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Quarter) && change.size() == 1);
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change[0], Quarter) && change.size() == 1);
 }
 
 void VendingMachineTester::testReturnChangeWhenOnlyOneNickelIsPicked(){
 	mVendingMachine.InsertCoin(Nickel);
 	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
-	CPPUNIT_ASSERT(CheckForAValidCoin(change[0], Nickel) && change.size() == 1);
+	CPPUNIT_ASSERT(CheckIfCoinsAreEqual(change[0], Nickel) && change.size() == 1);
 }
 
 void VendingMachineTester::testReturnChangeWhenMultipleCoinsAreInsterted(){
@@ -365,10 +365,10 @@ void VendingMachineTester::testReturnChangeWhenMultipleCoinsAreInsterted(){
 	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT(
-		CheckForAValidCoin(change[0], Nickel) && 
-		CheckForAValidCoin(change[1], Quarter) && 
-		CheckForAValidCoin(change[2], Nickel) && 
-		CheckForAValidCoin(change[3], Dime) && 
+		CheckIfCoinsAreEqual(change[0], Nickel) && 
+		CheckIfCoinsAreEqual(change[1], Quarter) && 
+		CheckIfCoinsAreEqual(change[2], Nickel) && 
+		CheckIfCoinsAreEqual(change[3], Dime) && 
 		change.size() == 4);
 }
 
@@ -397,8 +397,8 @@ void VendingMachineTester::testIfRejectedCoinCanBeReceivedOutOfTheChangeReturnSl
 	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
 	CPPUNIT_ASSERT( 
 		change.size() == 2  &&
-		CheckForAValidCoin(change[0], Penny) &&
-		CheckForAValidCoin(change[1], invalidCoin)
+		CheckIfCoinsAreEqual(change[0], Penny) &&
+		CheckIfCoinsAreEqual(change[1], invalidCoin)
 		);
 }
 
