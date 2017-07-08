@@ -23,19 +23,28 @@ VendingMachine::VendingMachine(){
 }
 
 void VendingMachine::InsertCoin(Coin inputCoin){
+	bool coinAccepted = false;
     if(CheckForAValidCoin(inputCoin, Quarter) ){
         currentAmountInsertedInCents += quarterValueInCents;
 		currentMessage = CreateNewMessageInDollarsWithAmountCents(AMOUNT, currentAmountInsertedInCents);
+		coinAccepted = true;
     } else if(CheckForAValidCoin(inputCoin, Nickel)){
         currentAmountInsertedInCents += nickelValueInCents;
 		currentMessage = CreateNewMessageInDollarsWithAmountCents(AMOUNT,currentAmountInsertedInCents);
+		coinAccepted = true;
     } else if(CheckForAValidCoin(inputCoin, Dime)){
         currentAmountInsertedInCents += dimeValueInCents;
 		currentMessage = CreateNewMessageInDollarsWithAmountCents(AMOUNT,currentAmountInsertedInCents);
+		coinAccepted = true;
     } else { 
         currentMessage = COIN_REJECTED;
+		coinAccepted = false;
     }
-	changeInCurrentTransaction.push_back(inputCoin);
+	if(coinAccepted){
+		changeInCurrentTransaction.push_back(inputCoin);
+	} else {
+		changeInReturnSlot.push_back(inputCoin);
+	}
 }
 
 bool VendingMachine::FloatValuesAreWithinEpsilon(float value1,float value2, float epsilon){

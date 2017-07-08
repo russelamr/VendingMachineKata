@@ -387,6 +387,21 @@ void VendingMachineTester::testVendingMachineDoesNotTryToReturnTheSameChangeMult
 	CPPUNIT_ASSERT(change.size() == 0);
 }
 
+void VendingMachineTester::testIfRejectedCoinCanBeReceivedOutOfTheChangeReturnSlot(){
+	Coin invalidCoin;
+	invalidCoin.weightInGrams = 99.0f;
+	invalidCoin.diameterInMilliMeters = 99.0f;
+	invalidCoin.thicknessInMilliMeters = 99.0f;
+	mVendingMachine.InsertCoin(Penny);
+	mVendingMachine.InsertCoin(invalidCoin);
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
+	CPPUNIT_ASSERT( 
+		change.size() == 2  &&
+		CheckForAValidCoin(change[0], Penny) &&
+		CheckForAValidCoin(change[1], invalidCoin)
+		);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
