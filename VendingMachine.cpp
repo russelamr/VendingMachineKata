@@ -116,7 +116,9 @@ std::string VendingMachine::AttemptToPurchaseItem(int amountInsertedInCents, int
 }
 
 std::vector<Coin> VendingMachine::RemoveChangeFromTheChangeReturnSlot(){
-	return changeInReturnSlot;
+	std::vector<Coin> changeInReturnSlotThatIsToBeReturned = changeInReturnSlot;
+	changeInReturnSlot.clear();
+	return changeInReturnSlotThatIsToBeReturned;
 }
 
 void VendingMachine::MakeChange(int amountToBeTurnedIntoChangeInCents){

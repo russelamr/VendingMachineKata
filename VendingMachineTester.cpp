@@ -378,6 +378,15 @@ void VendingMachineTester::testVendingMachineShowsInsertCoinAfterChangeIsReturne
 	CPPUNIT_ASSERT(mVendingMachine.GetCurrentMessage().compare(INSERT_COIN) == 0);
 }
 
+void VendingMachineTester::testVendingMachineDoesNotTryToReturnTheSameChangeMultipleTimes(){
+	mVendingMachine.InsertCoin(Nickel);
+	mVendingMachine.InsertCoin(Quarter);
+	mVendingMachine.ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
+	mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
+	std::vector<Coin> change = mVendingMachine.RemoveChangeFromTheChangeReturnSlot();
+	CPPUNIT_ASSERT(change.size() == 0);
+}
+
 void VendingMachineTester::setUp(){
     Quarter.weightInGrams = quarterWeightInGrams;
     Quarter.thicknessInMilliMeters = quarterThicknessInMilliMeters;
