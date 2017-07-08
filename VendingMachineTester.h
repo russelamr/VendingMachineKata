@@ -54,6 +54,7 @@ class VendingMachineTester : public CppUnit::TestFixture
 	CPPUNIT_TEST(testVendingMachineShowsInsertCoinAfterChangeIsReturned);
     CPPUNIT_TEST(testVendingMachineDoesNotTryToReturnTheSameChangeMultipleTimes);
 	CPPUNIT_TEST(testIfRejectedCoinCanBeReceivedOutOfTheChangeReturnSlot);
+	CPPUNIT_TEST(testIfExactChangeMessageWillBeDisplayedIfVendingMachineRunsOutOfDimesToGiveBack);
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -108,6 +109,7 @@ protected:
 	void testVendingMachineShowsInsertCoinAfterChangeIsReturned();
 	void testVendingMachineDoesNotTryToReturnTheSameChangeMultipleTimes();
 	void testIfRejectedCoinCanBeReceivedOutOfTheChangeReturnSlot();
+	void testIfExactChangeMessageWillBeDisplayedIfVendingMachineRunsOutOfDimesToGiveBack();
 	
 	const static float testerWeightToleranceInGrams = 0.01f;
 	const static float testerThicknessToleranceInMilliMeters = 0.01f;

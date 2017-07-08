@@ -20,6 +20,7 @@ public:
 	void SetStockOfCandy(int stockOfCandy);
 	void SetStockOfChips(int stockOfChips);
 	void SetStockOfCola(int stockOfCola);
+	void SetStockOfDimes(int numberOfDimes);
 	void ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot();
 	std::string GetCurrentMessage();
 	std::vector<Coin> RemoveChangeFromTheChangeReturnSlot();
@@ -41,6 +42,7 @@ private:
 	int currentStockOfCandy;
 	int currentStockOfChips;
 	int currentStockOfCola;
+	int currentStockOfDimes;
     static float const vendingMachineWeightToleranceInGrams = 0.01f;
     static float const vendingMachineThicknessToleranceInMilliMeters = 0.01f;
     static float const vendingMachineDiameterToleranceInMilliMeters = 0.01f;  

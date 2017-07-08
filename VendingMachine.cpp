@@ -148,3 +148,10 @@ void VendingMachine::ReturnCoinsInCurrentTransactionIntoTheChangeReturnSlot(){
 	currentMessage = INSERT_COIN;
 	changeInReturnSlot.insert(changeInReturnSlot.end(), changeInCurrentTransaction.begin(), changeInCurrentTransaction.end());
 }
+
+void VendingMachine::SetStockOfDimes(int numberOfDimes){
+	currentStockOfDimes = numberOfDimes;
+	if(currentStockOfDimes == 0){
+		currentMessage = EXACT_CHANGE_ONLY;
+	}
+}
